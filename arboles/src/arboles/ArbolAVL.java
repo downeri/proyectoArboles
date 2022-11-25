@@ -7,7 +7,7 @@ public class ArbolAVL extends ArbolBinBusq{
 
     @Override
     public void add(Nodo nodo){
-        System.out.println("Suuu");
+        System.out.println("Agregando "+nodo.valor);
         if(this.root==null){
             this.root=nodo;
             return;
@@ -35,12 +35,15 @@ public class ArbolAVL extends ArbolBinBusq{
             lados.addFirst(lado);
         }
         last.setLado(nodo, lado);
+        equilibrar(padres,nodo);
     }
     
-    private void equilibrar(LinkedList<Nodo> padres){
-        int iz,dere,factorEquilibrio;
+    private void equilibrar(LinkedList<Nodo> padres, Nodo nodoAInsertar){
+        Nodo z,y,x;
+        int factorEquilibrio;
         for(Nodo i:padres){
-            calcularFactorDeEquilibrio(i);
+            factorEquilibrio=calcularFactorDeEquilibrio(i);
+            rotar(i, factorEquilibrio, nodoAInsertar);
         }
     }
     
@@ -50,19 +53,99 @@ public class ArbolAVL extends ArbolBinBusq{
         return dere-iz;
     }
     
-    public void calcularRotacion(int factorEquilibrio){
+    private void rotar(Nodo nodo, int factorEquilibrio, Nodo nodoAInsertar){
+        Nodo z=nodo,x,y=nodo;
+        int subRotacion=0;
         switch(factorEquilibrio){
             case -1:
             case 0:
             case 1:
-                System.out.println("No se necesita rotacion");
+                System.out.println(nodo.valor+" no necesita rotacion");
             break;
             case -2:
-            case 2:
-                System.out.println("Se necesita rotacion");
+                z=nodo;
+                y=z.izq;
+                subRotacion=calcularSubRotacion(factorEquilibrio, y, nodoAInsertar);
             break;
-                
+            case 2:
+                z=nodo;
+                y=z.der;
+                subRotacion=calcularSubRotacion(factorEquilibrio, y, nodoAInsertar);
+            break;
+            default:
+                System.out.println(nodo.valor+" es imposible en AVL");
+            break;   
         }
+        Nodo a1,a2,a3,a4;
+        if(subRotacion!=0){
+            int lado=0;
+            Nodo padre=searchParent(z);
+            if(z!=root){
+                if(padre.izq==z)
+                    lado=0;
+                else
+                    lado=1;
+            }
+            switch(subRotacion){
+                case 2:
+                    System.out.println("Ejecutando rotacion izq der");
+                    x=y.der;
+                    a2=x.izq;
+                    z.izq=x;
+                    x.izq=y;
+                    y.der=a2;
+                    a1=y;
+                    y=x;
+                    x=a1;
+                    
+                case 1:
+                    System.out.println("Ejecutando rotacion izq izq");
+                    x=y.izq;
+                    a3=y.der;
+                    y.izq=x;
+                    y.der=z;
+                    z.izq=a3;
+                    if(z==root)
+                        root=y;
+                    else
+                        padre.setLado(y, lado);
+                break;
+                case 4:
+                    System.out.println("Ejecutando rotacion der izq");
+                    x=y.izq;
+                    a3=x.der;
+                    z.der=x;
+                    x.der=y;
+                    y.izq=a3;
+                    a1=y;
+                    y=x;
+                    x=a1;
+                case 3:
+                    System.out.println("Ejecutando rotacion der der");
+                    x=y.der;
+                    a2=y.izq;
+                    y.izq=z;
+                    y.der=x;
+                    z.der=a2;  
+                    if(z==root)
+                        root=y;
+                    else
+                        padre.setLado(y, lado);
+                break;
+            }
+        } 
+    }
+    
+    private int calcularSubRotacion(int factorEquilibrio, Nodo y, Nodo nodoAInsertar){
+        if(factorEquilibrio==-2&&nodoAInsertar.valor<y.valor)
+            return 1;
+        else if(factorEquilibrio==-2&&nodoAInsertar.valor>y.valor)
+            return 2;
+        else if(factorEquilibrio==2&&nodoAInsertar.valor>y.valor)
+            return 3;
+        else if(factorEquilibrio==2&&nodoAInsertar.valor<y.valor)
+            return 4;
+        return 0;
     }
     
     public int calcularAltura(Nodo nodo){
