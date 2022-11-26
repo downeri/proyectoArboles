@@ -1,7 +1,6 @@
 package arboles;
 
 import java.util.LinkedList;
-import java.util.Queue;
 
 public class ArbolAVL extends ArbolBinBusq{
 
@@ -15,7 +14,6 @@ public class ArbolAVL extends ArbolBinBusq{
         Nodo current=this.root;
         Nodo last=this.root;
         LinkedList<Nodo> padres=new LinkedList<>();
-        LinkedList<Integer> lados=new LinkedList<>();
         int lado=-1;
         while(current!=null){
             last=current;
@@ -32,14 +30,12 @@ public class ArbolAVL extends ArbolBinBusq{
                 current=current.der;
                 lado=1;
             }
-            lados.addFirst(lado);
         }
         last.setLado(nodo, lado);
         equilibrar(padres,nodo);
     }
     
     private void equilibrar(LinkedList<Nodo> padres, Nodo nodoAInsertar){
-        Nodo z,y,x;
         int factorEquilibrio;
         for(Nodo i:padres){
             factorEquilibrio=calcularFactorDeEquilibrio(i);
@@ -76,7 +72,7 @@ public class ArbolAVL extends ArbolBinBusq{
                 System.out.println(nodo.valor+" es imposible en AVL");
             break;   
         }
-        Nodo a1,a2,a3,a4;
+        Nodo a1,a2,a3;
         if(subRotacion!=0){
             int lado=0;
             Nodo padre=searchParent(z);
@@ -148,7 +144,7 @@ public class ArbolAVL extends ArbolBinBusq{
         return 0;
     }
     
-    public int calcularAltura(Nodo nodo){
+    private int calcularAltura(Nodo nodo){
         return calcularAlturaS(nodo)-1;
     }
     
@@ -162,50 +158,18 @@ public class ArbolAVL extends ArbolBinBusq{
     
 
 
-    public LinkedList<Nodo> getBFS(){
-        LinkedList<Nodo> BFS=new LinkedList<>();
-        System.out.println("\n\nÁrbol: ");
-        Nodo r = root;
-	Queue<Nodo> queue = new LinkedList();
-	if(r!=null){
-            queue.add(r);
-            while(!queue.isEmpty()){
-                r = (Nodo)queue.poll();
-                if(r!=null){
-                    BFS.add(r);
-                    if(r.izq!=null)
-                        queue.add(r.izq);
-                    else
-                        queue.add(null);
-                    if(r.der!=null)
-                        queue.add(r.der);
-                    else
-                        queue.add(null);
-                }else{
-                    BFS.add(null);
-                }
-            }
-	}
-        return BFS;
-    }
+   
     
     @Override
-    public void breadthFirst(){
-        LinkedList<Nodo> l=getBFS();
-        int i=-1;
-        for(Nodo n: l){
-            i++;
-            if(n!=null){
-                if(n.isLeaf())
-                    System.out.println(n.valor+" Sin hijos");
-                else if(n.izq==null&&n.der!=null)
-                    System.out.println(n.valor+". Sin hijo izquierdo. Hijo derecho: "+n.der.valor);  
-                else if(n.izq!=null&&n.der==null)
-                    System.out.println(n.valor+" Hijo iquierdo: "+n.izq.valor+" Sin hijo derecho");  
-                else if(n.izq!=null&&n.der!=null)
-                    System.out.println(n.valor+" Hijo iquierdo: "+n.izq.valor+" Hijo derecho: "+n.der.valor);  
-            }
+    public void remove(Nodo nodo){
+        super.remove(nodo);
+        System.out.print("Si sirve o nel?");
+        LinkedList<Nodo> bfs=this.getBreadthFirst();
+        LinkedList<Nodo> bfsNoNull=new LinkedList<>();
+        for(Nodo n:bfs){
+            if(n!=null)
+                bfsNoNull.add(n);
         }
-        System.out.println("");
+        equilibrar(bfsNoNull, nodo);
     }
 }

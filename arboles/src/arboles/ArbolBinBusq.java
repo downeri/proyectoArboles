@@ -67,10 +67,16 @@ public class ArbolBinBusq extends ArbolBin{
             }
             if(nodo.der!=null&&nodo.izq!=null){
                 Nodo predecesor=searchPredecesor(nodo);
-                searchParent(predecesor).disconnect(1);
-                predecesor.setIzq(nodo.izq);
-                predecesor.setDer(nodo.der);
-                nodoPadre.setLado(predecesor, lado);
+                if(predecesor!=nodo.izq){
+                    searchParent(predecesor).disconnect(1);
+                    predecesor.setIzq(nodo.izq);
+                    predecesor.setDer(nodo.der);
+                    nodoPadre.setLado(predecesor, lado);
+                }else{
+                    nodo.disconnect(0);
+                    predecesor.setDer(nodo.der);
+                    nodoPadre.setLado(predecesor, lado);
+                }
             }
         }
     }
