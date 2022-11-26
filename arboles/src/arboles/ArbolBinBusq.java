@@ -1,7 +1,23 @@
 package arboles;
 
+/**
+ * La clase modela un árbol binario de busqueda
+ * @author Equipo 5
+ */
 public class ArbolBinBusq extends ArbolBin{
     
+    /**
+     * 
+     * @deprecated 
+     */
+    @Override
+    public void add(Nodo padre, Nodo hijo, int lado){
+        
+    }
+    /**
+     * Encuentra la posición que le corresponde al nodo de acuerdo a su valor y lo inserta en el árbol
+     * @param nodo El nodo a insertar en el árbol
+     */
     public void add(Nodo nodo){
         if(this.root==null){
             this.root=nodo;
@@ -28,6 +44,11 @@ public class ArbolBinBusq extends ArbolBin{
         last.setLado(nodo, lado);
     }
     
+    /**
+     * Verifica si hay un valor en el árbol de búsqueda
+     * @param valor El numero que se desea localizar
+     * @return True si se encuentra el valor en el árbol. False si no
+     */
     @Override
     public Boolean buscar(int valor){
         Nodo current=this.root;
@@ -42,6 +63,10 @@ public class ArbolBinBusq extends ArbolBin{
         return false;
     }
     
+    /**
+     * Elimina un nodo del árbol
+     * @param nodo El nodo que se desea eliminar
+     */
      @Override
      public void remove(Nodo nodo){
         Nodo nodoPadre=searchParent(nodo);
@@ -81,7 +106,11 @@ public class ArbolBinBusq extends ArbolBin{
         }
     }
      
-     
+    /**
+     * Busca el predecesor de un nodo
+     * @param nodo El nodo del que se desea conocer el predecesor (Nodo más grande del subárbol izquierdo)
+     * @return El nodo predecesor del nodo
+     */
     private Nodo searchPredecesor(Nodo nodo){
         Nodo next=nodo.izq;
         while(next.der!=null){

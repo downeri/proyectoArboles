@@ -5,18 +5,35 @@ package arboles;
 import java.util.LinkedList;
 import java.util.Queue;
 
-
+/**
+ * Modela un árbol binario general
+ * @author Prof. Tista García Edgar, modificado por Equipo 5
+ */
 public class ArbolBin {
+    /**
+     * La raíz del aarbol
+     */
     Nodo root;
     
+    /**
+     * Crea un árbol vacío
+     */
     public ArbolBin(){
         root=null;
     }
     
+    /**
+     * Crea un árbol con el nodo raíz con el valor especificado
+     * @param val El valor que tendrpa el nodo raiz
+     */
     public ArbolBin(int val){
         root=new Nodo(val);
     }
     
+    /**
+     * Crea un árbol con el nodo especificado como raíz
+     * @param root El nodo que se establece como raíz
+     */
     public ArbolBin(Nodo root){
         this.root=root;
     }
@@ -28,24 +45,10 @@ public class ArbolBin {
             padre.setDer(hijo);
     }
     
-    public void breadthAdd(Nodo nodo, Nodo nodo2){
-        Nodo r = this.root;
-        LinkedList<Nodo> queue = new LinkedList();
-        queue.add(r);
-        while(!queue.isEmpty()){
-            r = (Nodo)queue.poll();
-            if(r==null)
-                continue;
-            if(r.isLeaf()){
-                r.setIzq(nodo);
-                r.setDer(nodo2);
-                break;
-            }
-            queue.add(r.izq);
-            queue.add(r.der);
-        }
-    }
-    
+    /**
+     * Elimina el nodo especificado del árbol
+     * @param nodo El nodo que se quiere eliminar del árbol
+     */
     public void remove(Nodo nodo){
         Nodo nodoPadre=searchParent(nodo);
         if(nodoPadre==null)
@@ -83,7 +86,10 @@ public class ArbolBin {
         }
     }
     
-    
+    /**
+     * Genera una lista de los nodos contenidos en el árbol utilizando el recorrido BreadthFirstSearch
+     * @return Una lista ligada del recorrido BFS del árbol
+     */
     public LinkedList<Nodo> getBreadthFirst(){
         LinkedList<Nodo> BFS=new LinkedList<>();
         System.out.println("\n\nÁrbol: ");
@@ -110,7 +116,9 @@ public class ArbolBin {
 	}
         return BFS;
     }
-    
+    /**
+     * Imprime en consola el recorrido Breadth First Search del árbol
+     */
     public void breadthFirst(){
         LinkedList<Nodo> l=getBreadthFirst();
         int i=-1;
@@ -130,19 +138,11 @@ public class ArbolBin {
         System.out.println("");
     }
     
-    public void breadthFirst(LinkedList<Nodo> l){
-        int i=-1;
-        for(Nodo n: l){
-            i++;
-            if(n==null)
-                System.out.print("["+i+"]"+"/ ");
-            else
-                System.out.print("["+i+"]"+n.valor+" ");
-        }
-        System.out.println("");
-    }
-    
-    
+    /**
+     * Busca el nodo padre de un nodo especificado
+     * @param nodoABuscar El nodo del cual se desea conocer su nodo padre
+     * @return El nodo padre del nodo especificado
+     */
     public Nodo searchParent(Nodo nodoABuscar){
         Nodo r = this.root;
 	Queue<Nodo> queue = new LinkedList();
@@ -164,7 +164,11 @@ public class ArbolBin {
 	}
         return null;
     }
-    
+    /**
+     * Busca si el nodo se encuentra en el árbol
+     * @param nodoABuscar El nodo que se quiere verificar si está en el árbol
+     * @return True si el nodo está en el árbol, False si no
+     */
     public Boolean buscar(Nodo nodoABuscar){
         Nodo r = this.root;
 	Queue<Nodo> queue = new LinkedList();
@@ -186,7 +190,11 @@ public class ArbolBin {
 	}
         return false;
     }
-    
+    /**
+     * Busca en el arbol si existe un nodo con el valor especificado
+     * @param valor El numero entero que se quiere encontrar en el árbol
+     * @return True si el nodo está en el árbol, False si no
+     */
     public Boolean buscar(int valor){
         Nodo r = this.root;
 	Queue<Nodo> queue = new LinkedList();
@@ -209,45 +217,4 @@ public class ArbolBin {
         return false;
     }
      
-    public void inOrder(){
-        System.out.print("Inorder: {");
-        doInOrder(this.root);
-        System.out.println("}");
-    }
-    
-    private void doInOrder(Nodo nodo){
-        if(nodo==null)
-            return;
-        doInOrder(nodo.izq);
-        System.out.print(nodo.valor+" ");
-        doInOrder(nodo.der);
-    }
-    
-    public void preOrder(){
-        System.out.print("Preorder{");
-        doPreOrder(this.root);
-        System.out.println("}");
-    }
-    
-    private void doPreOrder(Nodo nodo){
-        if(nodo==null)
-            return;
-        System.out.print(nodo.valor+" ");
-        doPreOrder(nodo.izq);
-        doPreOrder(nodo.der);
-    }
-    
-    public void postOrder(){
-        System.out.print("Postorder: {");
-        doPostOrder(this.root);
-        System.out.println("}");
-    }
-    
-    private void doPostOrder(Nodo nodo){
-        if(nodo==null)
-            return;
-        doPostOrder(nodo.izq);
-        doPostOrder(nodo.der);
-        System.out.print(nodo.valor+" ");
-    }
 }

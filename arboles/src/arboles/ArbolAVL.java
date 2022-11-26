@@ -2,8 +2,15 @@ package arboles;
 
 import java.util.LinkedList;
 
+/**
+ * Representa aun Árbol AVL, el cual es un árbol binario de búsqueda que siempre se encuentra balanceado
+ * @author Equipo 5
+ */
 public class ArbolAVL extends ArbolBinBusq{
-
+    /**
+     * Inserta un nodo nuevo al Arbol AVL, asegurandose de que este se encuentre balanceado
+     * @param nodo El nodo que se va a insertar 
+     */
     @Override
     public void add(Nodo nodo){
         System.out.println("Agregando "+nodo.valor);
@@ -35,6 +42,11 @@ public class ArbolAVL extends ArbolBinBusq{
         equilibrar(padres,nodo);
     }
     
+    /**
+     * Se encarga de revisar si los nodos superiores al nodo insertado se encuentran balanceados
+     * @param padres La lista de los nodos que llevan hacia el nodo insertado
+     * @param nodoAInsertar El nodo que se busca insertar
+     */
     private void equilibrar(LinkedList<Nodo> padres, Nodo nodoAInsertar){
         int factorEquilibrio;
         for(Nodo i:padres){
@@ -43,12 +55,23 @@ public class ArbolAVL extends ArbolBinBusq{
         }
     }
     
+    /**
+     * Calcula y regresa el factor de equilibrio. Este indica si los subarboles del nodo se encuentran balanceados
+     * @param i El nodo al que se analizarán los subarboles
+     * @return Devuelve el valor del factor de equilibrio, que puede ser -2, -1, 0, 1 o 2
+     */
     private int calcularFactorDeEquilibrio(Nodo i){
         int iz=calcularAltura(i.izq);
         int dere=calcularAltura(i.der);
         return dere-iz;
     }
     
+    /**
+     * Realiza las rotaciones en el nodo para que sus subarboles se encuentren equilibrados
+     * @param nodo El nodo donde se realizarán las rotaciones
+     * @param factorEquilibrio El factor de equilibrio indica qué rotacion se debe efectuar
+     * @param nodoAInsertar El nodo que se desea Insertar/Eliminar
+     */
     private void rotar(Nodo nodo, int factorEquilibrio, Nodo nodoAInsertar){
         Nodo z=nodo,x,y=nodo;
         int subRotacion=0;
@@ -132,6 +155,13 @@ public class ArbolAVL extends ArbolBinBusq{
         } 
     }
     
+    /**
+     * Dependiendo del factor equilibrio y del camino que se necesita recorrer para la inserción o eliminación, indica qué tipo de rotación necesita hacer
+     * @param factorEquilibrio El factor de equilibrio del nodo
+     * @param y El siguiente nodo en el recorrido.
+     * @param nodoAInsertar El nodo a insertar/eliminar
+     * @return Regresa un valor entero dependiendo del tipo de rotacion. 1.Izquierda-Izquierda 2 Izquierda-Derecha 3.Derecha-Derecha 4.Derecha-Izquierda
+     */
     private int calcularSubRotacion(int factorEquilibrio, Nodo y, Nodo nodoAInsertar){
         if(factorEquilibrio==-2&&nodoAInsertar.valor<y.valor)
             return 1;
@@ -144,10 +174,20 @@ public class ArbolAVL extends ArbolBinBusq{
         return 0;
     }
     
+    /**
+     * Calcula la altura del árbol
+     * @param nodo El nodo del que se quiere conocer su altura
+     * @return Regresa la altura más grande de sus subárboles
+     */
     private int calcularAltura(Nodo nodo){
         return calcularAlturaS(nodo)-1;
     }
     
+    /**
+     * Calcula la altura de el nodo como subárbol, contandose a él mismo
+     * @param nodo El nodo del cual se quiere conocer cual es su altura como subarbol
+     * @return La altura más grande de sus subárboles + 1
+     */
     private int calcularAlturaS(Nodo nodo){
         if(nodo==null)
             return 0;
@@ -159,7 +199,10 @@ public class ArbolAVL extends ArbolBinBusq{
 
 
    
-    
+    /**
+     * Elimina un nodo del árbol
+     * @param nodo El nodo que se desea eliminar
+     */
     @Override
     public void remove(Nodo nodo){
         super.remove(nodo);
