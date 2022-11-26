@@ -13,7 +13,7 @@ public class ArbolBin {
     /**
      * La raíz del aarbol
      */
-    Nodo root;
+    public Nodo root;
     
     /**
      * Crea un árbol vacío
@@ -216,5 +216,39 @@ public class ArbolBin {
 	}
         return false;
     }
-     
+     /**
+     * Calcula la altura del árbol
+     * @param nodo El nodo del que se quiere conocer su altura
+     * @return Regresa la altura más grande de sus subárboles
+     */
+    public int calcularAltura(Nodo nodo){
+        return calcularAlturaS(nodo)-1;
+    }
+    
+    /**
+     * Calcula la altura de el nodo como subárbol, contandose a él mismo
+     * @param nodo El nodo del cual se quiere conocer cual es su altura como subarbol
+     * @return La altura más grande de sus subárboles + 1
+     */
+    private int calcularAlturaS(Nodo nodo){
+        if(nodo==null)
+            return 0;
+        int i=calcularAlturaS(nodo.izq);
+        int d=calcularAlturaS(nodo.der);
+        return (Integer.max(i, d)+1);
+    }
+    
+    public LinkedList<Nodo> preOrder(){
+        LinkedList<Nodo> preOrderList=new LinkedList<>();
+        doPreOrder(this.root,preOrderList);
+        return preOrderList;
+    }
+    
+    private void doPreOrder(Nodo nodo,LinkedList<Nodo> l){
+        if(nodo==null)
+            return;
+        l.add(nodo);
+        doPreOrder(nodo.izq,l);
+        doPreOrder(nodo.der,l);
+    }
 }

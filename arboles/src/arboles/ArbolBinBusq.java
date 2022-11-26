@@ -63,12 +63,52 @@ public class ArbolBinBusq extends ArbolBin{
         return false;
     }
     
+     public Nodo buscarNodoPorValor(int valor){
+        Nodo current=this.root;
+        while(current!=null){
+            if(valor==current.valor)
+                return current;
+            else if(valor<current.valor)
+                current=current.izq;
+            else if(valor>current.valor)
+                current=current.der;
+        }
+        return null;
+    }
+    
     /**
      * Elimina un nodo del árbol
      * @param nodo El nodo que se desea eliminar
      */
      @Override
      public void remove(Nodo nodo){
+        if(nodo==root){
+            if(nodo.isLeaf()){
+                root=null;
+                return;
+            }
+            if(nodo.der==null&&nodo.izq!=null){
+                root=nodo.izq;
+                return;
+            }
+            if(nodo.der!=null&&nodo.izq==null){
+               root=nodo.der;
+               return;
+            }
+            if(nodo.der!=null&&nodo.izq!=null){
+                Nodo predecesor=searchPredecesor(nodo);
+                if(predecesor!=nodo.izq){
+                    searchParent(predecesor).disconnect(1);
+                    predecesor.setIzq(nodo.izq);
+                    predecesor.setDer(nodo.der);
+                    root=predecesor;
+                }else{
+                    nodo.disconnect(0);
+                    predecesor.setDer(nodo.der);
+                    root=predecesor;
+                }
+            }
+        }
         Nodo nodoPadre=searchParent(nodo);
         if(nodoPadre==null)
             System.out.print("No existe el nodo en el árbol");

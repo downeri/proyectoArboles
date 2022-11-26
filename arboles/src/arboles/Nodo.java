@@ -10,15 +10,15 @@ public class Nodo {
     /**
      * El contenido del nodo
      */
-    int valor;
+    public int valor;
     /**
      * Apuntador hacia su nodo hijo izqierdo
      */
-    Nodo izq = null;
+    public Nodo izq = null;
     /**
      * Apuntador hacia su nodo hijo derecho
      */
-    Nodo der = null;
+    public Nodo der = null;
     
     /**
      * Crea un nodo con valor 0 y sun nodos hijos
