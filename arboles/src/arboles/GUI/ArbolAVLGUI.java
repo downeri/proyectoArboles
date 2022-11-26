@@ -121,8 +121,10 @@ public final class ArbolAVLGUI extends javax.swing.JFrame {
         try{
             if(arbol.buscar(Integer.parseInt(o)))
                 JOptionPane.showMessageDialog(this, "El valor se encuentra en el árbol, no se puede insertar","Mensaje",JOptionPane.WARNING_MESSAGE);
-            else
+            else{
                 arbol.add(new Nodo(Integer.parseInt(o)));
+                JOptionPane.showMessageDialog(this, "El valor se ha insertado con éxito","Mensaje",JOptionPane.INFORMATION_MESSAGE);
+            }
         }catch(NumberFormatException u){
             JOptionPane.showMessageDialog(this, "No es un numero");
         }
@@ -131,7 +133,7 @@ public final class ArbolAVLGUI extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         if(arbol.root==null)
-            JOptionPane.showMessageDialog(this, "No se ha insertado ningun elemento en el árbol");
+            JOptionPane.showMessageDialog(this, "No hay elementos para mostrar","Mensaje",JOptionPane.WARNING_MESSAGE);
         else{
             TreeImage t=new TreeImage(arbol);
             Image i=t.generarImagenArbol();
