@@ -17,5 +17,6 @@ public class Pruebas {
        System.out.println("\n============");
        ArbolExpArit arbolito3 = new ArbolExpArit("(1+2^3+2)+3");
        arbolito3.postOrden();
+       //Hola
     }
 }
