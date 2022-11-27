@@ -70,6 +70,7 @@ public class TreeImage {
     private void mostrarImagen() {
         Desktop d=Desktop.getDesktop();
         File file=new File("Imagen.png");
+        System.out.println();
         try {
             ImageIO.write(image, "png", file);
             d.open(file);
