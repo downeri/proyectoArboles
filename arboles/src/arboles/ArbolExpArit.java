@@ -10,17 +10,25 @@ import java.util.ArrayList;
 public class ArbolExpArit {
 
     NodoString root;
-
-    ArbolExpArit(String ecuacion) { //Metodo constructor
-        ecuacion = ecuacion.replaceAll("\\s", ""); //Elimina todo espacio, tabulacion y otros raros
-        if (validez(ecuacion)) { //Se verifica que la esctructura de la ec sea valida
-            root = Creacion(ecuacion); //si lo es se crea el arbol
+    
+    /*
+        Método constructor
+        Elimina todo espacio, tabulacion y otros raros
+        Se verifica la validez de la ecuacion 
+    */
+    ArbolExpArit(String ecuacion) {
+        ecuacion = ecuacion.replaceAll("\\s", "");
+        if (validez(ecuacion)) {
+            root = Creacion(ecuacion);
         } else {
-            root = null; //Si no se retorna un arbol vacio
+            root = null;
         }
     }
 
-    private boolean isOperator(char c) { //Devuelve un valor booleano según sea valido o no
+    /*
+        Devuelve un valor booleano según sea valido o no
+    */
+    private boolean isOperator(char c) {
         switch (c) {
             case ('('):
             case (')'):
@@ -35,6 +43,11 @@ public class ArbolExpArit {
         }
     }
 
+    /*
+        Se verifica la validez de la ecuacion 
+        Revisando que no haya dos simbolos operadores seguidos (excepto parentesis)
+        Y que los parentesis estén bien escritos
+    */
     private boolean validez(String ecuacion) {
         Stack<Character> parentesis = new Stack<>();
         for (int i = 0; i < ecuacion.length(); i++) {
@@ -65,13 +78,20 @@ public class ArbolExpArit {
         return true;
     }
 
-    private NodoString subArbol(NodoString nodo, NodoString izq, NodoString der) { //Crea un subarbol
+    /*
+        Permite crear un subarboles
+    */
+    private NodoString subArbol(NodoString nodo, NodoString izq, NodoString der) {
         nodo.setIzq(izq);
         nodo.setDer(der);
         return nodo;
     }
 
-    private short prioridad(String s) { //devuelve un valor de prioridad entre más grande más prioridad
+    /*
+        Devuelve un valor de prioridad entre más grande más prioridad
+        Considera a los parentesis como la mayor prioridad
+    */
+    private short prioridad(String s) {
         char c = s.charAt(0);
         switch (c) {
             case ('+'):
@@ -83,11 +103,13 @@ public class ArbolExpArit {
             case ('^'):
                 return 3;
             default:
-                return 0; //Para el '(' y el ')'
+                return 0;
         }
     }
 
-    //Desapila 2 elementos de los terminos y un operador para unirlos en un solo termino 
+    /*
+    Desapila 2 elementos de los terminos y un operador para unirlos en un solo termino 
+    */
     private NodoString construirTermino(Stack<NodoString> pTerminos, Stack<NodoString> pOperaciones) {
         NodoString b = pTerminos.pop();
         NodoString a = pTerminos.pop();
@@ -95,10 +117,12 @@ public class ArbolExpArit {
         return subArbol(operacion, a, b);
     }
 
-    //Permite obtener números de más de una cifra, si no es un número no hace nada
+    /*
+        Permite obtener números de más de una cifra, si no es un número no hace nada
+    */
     private int getIndexNumbers(String ec, int i) {
         int index = 1;
-        if (isOperator(ec.charAt(i))) { //Si no es numero no hace nada
+        if (isOperator(ec.charAt(i))) {
             return 1;
         }
         for (int j = i; j < ec.length(); j++) {
@@ -112,18 +136,34 @@ public class ArbolExpArit {
         return index;
     }
 
-    //Convierte la cadena de caracteres en un arreglo con cada termino
+    /*
+        Convierte la cadena de caracteres en un arreglo con cada termino
+        Si hay dos numeros seguidos se verifica aquí
+    */
     private ArrayList<String> toArrayList(String ecuacion) {
         ArrayList<String> ec = new ArrayList<>();
         for (int i = 0; i < ecuacion.length();) {
             int j = getIndexNumbers(ecuacion, i);
-            ec.add(ecuacion.substring(i, i + j)); //En el caso de que se ingresen numeros de más de un digito
+            ec.add(ecuacion.substring(i, i + j));
             i += j;
         }
         return ec;
     }
 
-    //Crea el árbol de expresiones aritmeticas
+    /*
+        -Crea el árbol de expresiones aritmeticas
+        -Si es un número el termino evaluado va a la pila de terminos
+        -Si no va a la pila de operaciones
+        -Se crean subarboles de izquierda a derecha leyendo el arreglo de la
+        expresion aritmetica. Formando subárboles según la prioridad del operador
+        -Formando subarboles al desapilar las pilas, 2 de terminos y uno de operacion,
+        operacion es el padre de estos, el subarbol es un nuevo termino y se apila
+        -Como lo que está dentro del parentesis se realiza primero, se crea un subárbol
+        de todo lo que esté contenido en ello
+        -Una vez se recorre todo el arreglo si aun quedan terminos en las pilas
+        se van desapilando los terminos y creando subarboles hasta que solo quede uno
+        ese subarbol es el arbol de expresion aritmetica
+    */
     private NodoString Creacion(String ecuacion) {
         Stack<NodoString> pilaTerminos = new Stack<>();
         Stack<NodoString> pilaOperaciones = new Stack<>();
@@ -135,8 +175,8 @@ public class ArbolExpArit {
             String termino = ec.get(i);
             nodoTermino = new NodoString(termino);
             if (!isOperator(termino.charAt(0))) {
-                pilaTerminos.push(nodoTermino); //añade los números
-            } else { //Si no es un número
+                pilaTerminos.push(nodoTermino);
+            } else {
                 switch (termino.charAt(0)) {
                     case ('('):
                         pilaOperaciones.push(nodoTermino);
@@ -147,7 +187,7 @@ public class ArbolExpArit {
                         }
                         pilaOperaciones.pop();
                         break;
-                    default: //Si no es un parentesis
+                    default:
                         while (!pilaOperaciones.empty() && prioridad(termino) <= prioridad((pilaOperaciones.peek()).getDato())) {
                             pilaTerminos.push(construirTermino(pilaTerminos, pilaOperaciones));
                         }
@@ -155,15 +195,16 @@ public class ArbolExpArit {
                 }
             }
         }
-        while (!pilaOperaciones.empty()) { //Si quedan elementos (Seran los de menor jerarquía)
+        while (!pilaOperaciones.empty()) {
             pilaTerminos.push(construirTermino(pilaTerminos, pilaOperaciones));
         }
 
-        //Devuelve el árbol que es lo único que queda
         return pilaTerminos.pop();
     }
 
-    //Recorre en postOrden pero también realiza la operacion aritmetica
+    /*
+        Recorre en postOrden pero también realiza la operacion aritmetica
+    */
     public void postOrden() {
         ArrayList<String> list = new ArrayList<>();
         Stack<String> ecuacion = new Stack<>();
@@ -172,13 +213,15 @@ public class ArbolExpArit {
 
         System.out.println(list);
         if (!ecuacion.empty()) {
-            System.out.println("La solución de la ecuacion es: " + ecuacion.pop()); //Si es una operacion valida
+            System.out.println("La solución de la ecuacion es: " + ecuacion.pop());
         } else {
             System.out.println("Ecuacion no valida");
         }
     }
 
-    //Realiza el verdadero recorrido y con una pila realiza la operacion por la notacion polaca inversa
+    /*
+        Realiza el verdadero recorrido y con una pila realiza la operacion por la notacion polaca inversa
+    */
     private void postOrden(NodoString nodo, Stack<String> ecuacion, ArrayList<String> listaPostOrden) {
         if (nodo == null) {
             return;
@@ -193,7 +236,9 @@ public class ArbolExpArit {
         resolverEcuacion(ecuacion, dato);
     }
 
-    //Resuelve la operacion con una pila
+    /*
+        Resuelve la operacion con una pila
+    */
     private void resolverEcuacion(Stack<String> ecuacion, String dato) {
         if (isOperator(dato.charAt(0))) {
             String operador = ecuacion.pop();
