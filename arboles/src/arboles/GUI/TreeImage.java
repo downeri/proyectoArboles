@@ -5,6 +5,7 @@
  */
 package arboles.GUI;
 
+
 import arboles.ArbolBin;
 import arboles.Nodo;
 import java.awt.Color;
@@ -40,7 +41,7 @@ public class TreeImage {
     
     
     public BufferedImage generarImagenArbol(){
-        g2d.setColor(Color.white);
+        g2d.setColor(new Color(240,240,240));
         g2d.fillRect(0, 0, width, height);
         g2d.setColor(Color.BLACK);
         int x=(width/2)-25;

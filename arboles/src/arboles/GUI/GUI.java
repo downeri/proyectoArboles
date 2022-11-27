@@ -5,6 +5,8 @@
  */
 package arboles.GUI;
 
+import java.awt.event.ActionEvent;
+
 /**
  *
  * @author Downe
@@ -92,6 +94,9 @@ public class GUI extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         ArbolAVLGUI o=new ArbolAVLGUI();
         this.setVisible(false);
+        o.jButton5.addActionListener((ActionEvent e)->{
+            this.setVisible(true);
+        });
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
