@@ -1,6 +1,6 @@
 package arboles;
 
-public class Pruebas {
+public class Principal {
     public static void main(String [] args){
        System.out.println("\n============");
        ArbolExpArit arbolito = new ArbolExpArit("1+2-4/3*(5+8))");
