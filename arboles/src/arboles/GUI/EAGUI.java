@@ -5,7 +5,8 @@
  */
 package arboles.GUI;
 
-import arboles.Heap;
+import arboles.ArbolAVL;
+import arboles.ArbolExpArit;
 import arboles.Nodo;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
@@ -16,17 +17,16 @@ import javax.swing.JOptionPane;
  *
  * @author Downe
  */
-public final class HeapGUI extends javax.swing.JFrame {
+public final class EAGUI extends javax.swing.JFrame {
 
     /**
      * Creates new form ArbolAVL
      */
     
-    Heap arbol;
+    ArbolExpArit arbol;
     
-    public HeapGUI() {
+    public EAGUI() {
         initComponents();
-        arbol=new Heap();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
     }
@@ -41,26 +41,18 @@ public final class HeapGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Heap");
+        setTitle("Árbol AVL");
         setResizable(false);
 
         jButton1.setText("Agregar a árbol");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
-            }
-        });
-
-        jButton3.setText("Eliminar clave");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
             }
         });
 
@@ -90,35 +82,32 @@ public final class HeapGUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap(92, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(113, 113, 113)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(87, 87, 87)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton1))
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(89, Short.MAX_VALUE))
+                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(84, 84, 84))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(125, 125, 125))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(137, Short.MAX_VALUE)
+                .addGap(171, 171, 171)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(79, 79, 79)
                 .addComponent(jButton4)
-                .addGap(81, 81, 81)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 157, Short.MAX_VALUE)
                 .addComponent(jButton5)
-                .addGap(46, 46, 46))
+                .addGap(31, 31, 31))
         );
 
         pack();
@@ -132,25 +121,13 @@ public final class HeapGUI extends javax.swing.JFrame {
         if(arbol.root==null)
             JOptionPane.showMessageDialog(this, "No hay elementos para mostrar","Mensaje",JOptionPane.WARNING_MESSAGE);
         else{
-            TreeImage t=new TreeImage(arbol);
+            TreeImageString t=new TreeImageString(arbol);
             Image i=t.generarImagenArbol();
             ImageIcon icon=new ImageIcon(i);
             icon.setImage(icon.getImage().getScaledInstance(490, 350, Image.SCALE_DEFAULT));
             t.mostrarImagen();
         }
     }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-//        String o=JOptionPane.showInputDialog("Inserta un número");
-//        try{
-//            if(arbol.remove(Integer.parseInt(o)))
-//                JOptionPane.showMessageDialog(this, "El valor se ha removido del árbol :D");
-//            else
-//                JOptionPane.showMessageDialog(this, "El valor no se encuentra en el árbol :(");
-//        }catch(NumberFormatException u){
-//            JOptionPane.showMessageDialog(this, "No es un numero");
-//        }
-    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         this.dispose();
@@ -165,21 +142,11 @@ public final class HeapGUI extends javax.swing.JFrame {
     
     private void leer(){
         String o=jTextField1.getText();
-        try{
-            if(arbol.buscar(Integer.parseInt(o)))
-                JOptionPane.showMessageDialog(this, "El valor se encuentra en el árbol, no se puede insertar","Mensaje",JOptionPane.WARNING_MESSAGE);
-            else{
-                arbol.add(new Nodo(Integer.parseInt(o)));
-                JOptionPane.showMessageDialog(this, "El valor se ha insertado con éxito","Mensaje",JOptionPane.INFORMATION_MESSAGE);
-            }
-        }catch(NumberFormatException u){
-            JOptionPane.showMessageDialog(this, "No es un numero");
-        }
+        arbol=new ArbolExpArit(o);
         jTextField1.setText("");
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     public javax.swing.JButton jButton5;
     private javax.swing.JTextField jTextField1;

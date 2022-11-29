@@ -16,7 +16,7 @@ public class ArbolExpArit extends ArbolBin {
         Elimina todo espacio, tabulacion y otros raros
         Se verifica la validez de la ecuacion 
     */
-    ArbolExpArit(String ecuacion) {
+    public ArbolExpArit(String ecuacion) {
         ecuacion = ecuacion.replaceAll("\\s", "");
         if (validez(ecuacion)) {
             root = Creacion(ecuacion);
