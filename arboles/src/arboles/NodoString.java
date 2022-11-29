@@ -4,13 +4,13 @@ package arboles;
  *
  * @author danie
  */
-public class NodoString {
-    String dato;
-    NodoString izq;
-    NodoString der;
+public class NodoString extends Nodo{
+    public String valor;
+    public NodoString izq;
+    public NodoString der;
     
     NodoString(String s){
-        dato = s;
+        valor = s;
         izq = der = null;
     }
     
@@ -31,6 +31,6 @@ public class NodoString {
     }
     
     public String getDato(){
-        return dato;
+        return valor;
     }
 }

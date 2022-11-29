@@ -7,9 +7,9 @@ package arboles;
 import java.util.Stack;
 import java.util.ArrayList;
 
-public class ArbolExpArit {
+public class ArbolExpArit extends ArbolBin {
 
-    NodoString root;
+    public NodoString root;
     
     /*
         Método constructor
@@ -264,5 +264,18 @@ public class ArbolExpArit {
             }
             ecuacion.push(String.valueOf(doble));
         }
+    }
+    
+    public int calcularAltura(NodoString nodo){
+        return calcularAlturaS(nodo)-1;
+    }
+    
+
+    private int calcularAlturaS(NodoString nodo){
+        if(nodo==null)
+            return 0;
+        int i=calcularAlturaS(nodo.izq);
+        int d=calcularAlturaS(nodo.der);
+        return (Integer.max(i, d)+1);
     }
 }

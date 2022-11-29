@@ -251,4 +251,12 @@ public class ArbolBin {
         doPreOrder(nodo.izq,l);
         doPreOrder(nodo.der,l);
     }
+    
+    public int getLadoHijo(Nodo padre, Nodo hijo){
+        if(padre.izq==hijo)
+            return 0;
+        if(padre.der==hijo)
+            return 1;
+        return -1;
+    }
 }
