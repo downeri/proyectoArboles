@@ -205,7 +205,7 @@ public class ArbolExpArit extends ArbolBin {
     /*
         Recorre en postOrden pero también realiza la operacion aritmetica
     */
-    public void postOrden() {
+    public String postOrden() {
         ArrayList<String> list = new ArrayList<>();
         Stack<String> ecuacion = new Stack<>();
         System.out.print("Postorder:");
@@ -213,10 +213,13 @@ public class ArbolExpArit extends ArbolBin {
 
         System.out.println(list);
         if (!ecuacion.empty()) {
-            System.out.println("La solución de la ecuacion es: " + ecuacion.pop());
+            String u=ecuacion.pop();
+            System.out.println("La solución de la ecuacion es: " + u);
+            return u;
         } else {
             System.out.println("Ecuacion no valida");
         }
+        return "Ecuacion no valida";
     }
 
     /*
