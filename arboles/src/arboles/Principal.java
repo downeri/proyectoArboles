@@ -15,7 +15,7 @@ public class Principal {
        arbolito2.postOrden();
        
        System.out.println("\n============");
-       ArbolExpArit arbolito3 = new ArbolExpArit("(1+2^3+2)+3");
+       ArbolExpArit arbolito3 = new ArbolExpArit("(()()())");
        arbolito3.postOrden();
     }
 }
