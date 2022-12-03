@@ -76,6 +76,11 @@ public class ArbolExpArit extends ArbolBin {
 
                     if (expresion.charAt(i) == '(') {
                         parentesis.push('(');
+                        try{
+                            if(expresion.charAt(i + 1) == ')')
+                                return false;
+                        }catch(Exception e){
+                        }
                     } else if (expresion.charAt(i) == ')' && !parentesis.empty()) {
                         parentesis.pop();
                     } else if (expresion.charAt(i) == ')' && parentesis.empty()) {
@@ -186,10 +191,15 @@ public class ArbolExpArit extends ArbolBin {
         for (int i = 0; i < expresion.length();) {
             int j = getIndexNumbers(expresion, i);
             ex.add(expresion.substring(i, i + j));
-
+            
             try {
-                if (expresion.charAt(i) == ')' && expresion.charAt(i + 1) == '(') {
+                if (expresion.charAt(i) == ')' && (expresion.charAt(i + 1) == '(' || Character.isDigit(expresion.charAt(i + 1)))) {
                     expresion = expresion.substring(0, i + 1) + "*" + expresion.substring(i + 1);
+                    System.out.println(expresion);
+                }
+                if (Character.isDigit(expresion.charAt(i)) && expresion.charAt(i + 1) == '('){
+                    expresion = expresion.substring(0, i + 1) + "*" + expresion.substring(i + 1);
+                    System.out.println(expresion);
                 }
             } catch (Exception e) {
 
