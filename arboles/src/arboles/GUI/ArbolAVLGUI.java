@@ -244,7 +244,7 @@ public final class ArbolAVLGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_showButtonActionPerformed
 
     /**
-     * Lee el texto en 
+     * Lee el texto en addTextField, lo convierte a entero y lo inserta en el árbol
      */
     private void agregar(){
         String o=addTextField.getText();
@@ -261,6 +261,9 @@ public final class ArbolAVLGUI extends javax.swing.JFrame {
         addTextField.setText("");
     }
     
+    /**
+     * Lee el texto en searchTextField, lo convierte a entero y lo busca en el árbol
+     */
     private void buscar() {
         String o=searchTextField.getText();
         try{
@@ -273,7 +276,10 @@ public final class ArbolAVLGUI extends javax.swing.JFrame {
         }
         searchTextField.setText("");
     }
-
+    
+    /**
+     * Lee el texto en searchTextField, lo convierte a entero y lo elimina del árbol
+     */
     private void eliminar() {
         String o=removeTextField.getText();
         try{
