@@ -1,33 +1,39 @@
 package arboles;
 
 /**
- *
- * @author danie
+ * La clase modela una arbol de expresiones aritmeticas donde cada nodo almacena
+ * datos de tipo string
  */
 import java.util.Stack;
 import java.util.ArrayList;
 
 public class ArbolExpArit extends ArbolBin {
 
+    /**
+     * La referencia del nodo raíz
+     */
     public NodoString root;
-    
-    /*
-        Método constructor
-        Elimina todo espacio, tabulacion y otros raros
-        Se verifica la validez de la ecuacion 
-    */
-    public ArbolExpArit(String ecuacion) {
-        ecuacion = ecuacion.replaceAll("\\s", "");
-        if (validez(ecuacion)) {
-            root = Creacion(ecuacion);
+
+    /**
+     * Método constructor
+     *
+     * @param expresion es la cadena de caracteres que representa la expresion
+     */
+    public ArbolExpArit(String expresion) {
+        expresion = expresion.replaceAll("\\s", "");
+        if (validez(expresion)) {
+            root = Creacion(expresion);
         } else {
             root = null;
         }
     }
 
-    /*
-        Devuelve un valor booleano según sea valido o no
-    */
+    /**
+     * Permite identificar si un caracter es un operador valido
+     *
+     * @param c es el caracter evaluado
+     * @return true en caso de ser valido o false en caso contrario
+     */
     private boolean isOperator(char c) {
         switch (c) {
             case ('('):
@@ -43,24 +49,39 @@ public class ArbolExpArit extends ArbolBin {
         }
     }
 
-    /*
-        Se verifica la validez de la ecuacion 
-        Revisando que no haya dos simbolos operadores seguidos (excepto parentesis)
-        Y que los parentesis estén bien escritos
-    */
-    private boolean validez(String ecuacion) {
+    /**
+     * Verifica la validez de la expresion
+     *
+     * @param expresion
+     * @return un valor booleano true en caso de ser valida, de lo contrario
+     * devuelve un false
+     */
+    private boolean validez(String expresion) {
         Stack<Character> parentesis = new Stack<>();
-        for (int i = 0; i < ecuacion.length(); i++) {
-            if (!Character.isDigit(ecuacion.charAt(i))) {
-                if (isOperator(ecuacion.charAt(i))) {
-                    if (ecuacion.charAt(i) == '(') {
+        boolean flag = false;
+        for (int i = 0; i < expresion.length(); i++) {
+            if (!Character.isDigit(expresion.charAt(i))) {
+                if (isOperator(expresion.charAt(i))) {
+                    if (expresion.charAt(i) != '(' && expresion.charAt(i) != ')') {
+                        try {
+                            boolean ant = Character.isDigit(expresion.charAt(i - 1)) || expresion.charAt(i - 1) == '(' || expresion.charAt(i - 1) == ')';
+                            boolean des = Character.isDigit(expresion.charAt(i + 1)) || expresion.charAt(i + 1) == '(' || expresion.charAt(i + 1) == ')';
+                            if (!ant || !des) {
+                                return false;
+                            }
+                        } catch (Exception e) {
+                            return false;
+                        }
+                    }
+
+                    if (expresion.charAt(i) == '(') {
                         parentesis.push('(');
-                    } else if (ecuacion.charAt(i) == ')' && !parentesis.empty()) {
+                    } else if (expresion.charAt(i) == ')' && !parentesis.empty()) {
                         parentesis.pop();
-                    } else if (ecuacion.charAt(i) == ')' && parentesis.empty()) {
+                    } else if (expresion.charAt(i) == ')' && parentesis.empty()) {
                         return false;
-                    } else if (i + 1 < ecuacion.length()) {
-                        switch (ecuacion.charAt(i + 1)) {
+                    } else if (i + 1 < expresion.length()) {
+                        switch (expresion.charAt(i + 1)) {
                             case ('^'):
                             case ('*'):
                             case ('/'):
@@ -73,24 +94,34 @@ public class ArbolExpArit extends ArbolBin {
                 } else {
                     return false;
                 }
+            }else{
+                flag = true;
             }
         }
-        return true;
+        
+        return flag;
     }
 
-    /*
-        Permite crear un subarboles
-    */
+    /**
+     * Crea subarboles
+     *
+     * @param nodo es la raiz del subarbol
+     * @param izq es el hijo izquierdo del subarbol
+     * @param der es de hijo derecho del subarbol
+     * @return la raíz del subarbol construido
+     */
     private NodoString subArbol(NodoString nodo, NodoString izq, NodoString der) {
         nodo.setIzq(izq);
         nodo.setDer(der);
         return nodo;
     }
 
-    /*
-        Devuelve un valor de prioridad entre más grande más prioridad
-        Considera a los parentesis como la mayor prioridad
-    */
+    /**
+     * Jeraquiza las prioridades de los operadores
+     *
+     * @param s es el operador evaluado
+     * @return el valor de prioridad que ocupa, entre más alto, mayor prioridad
+     */
     private short prioridad(String s) {
         char c = s.charAt(0);
         switch (c) {
@@ -107,9 +138,13 @@ public class ArbolExpArit extends ArbolBin {
         }
     }
 
-    /*
-    Desapila 2 elementos de los terminos y un operador para unirlos en un solo termino 
-    */
+    /**
+     * Construte terminos a partir de las pilas de terminos y operadores
+     *
+     * @param pTerminos es la pila de terminos
+     * @param pOperaciones es la pila de operadores
+     * @return el subarbol del termino creado
+     */
     private NodoString construirTermino(Stack<NodoString> pTerminos, Stack<NodoString> pOperaciones) {
         NodoString b = pTerminos.pop();
         NodoString a = pTerminos.pop();
@@ -117,59 +152,66 @@ public class ArbolExpArit extends ArbolBin {
         return subArbol(operacion, a, b);
     }
 
-    /*
-        Permite obtener números de más de una cifra, si no es un número no hace nada
-    */
-    private int getIndexNumbers(String ec, int i) {
+    /**
+     * Obtiene los intervalos para cada termino y operacion inicial
+     *
+     * @param ex es la expresión evaluada
+     * @param i la posición actual en la expresion
+     * @return el intervalo del elemento
+     */
+    private int getIndexNumbers(String ex, int i) {
         int index = 1;
-        if (isOperator(ec.charAt(i))) {
+        if (isOperator(ex.charAt(i))) {
             return 1;
         }
-        for (int j = i; j < ec.length(); j++) {
+        for (int j = i; j < ex.length(); j++) {
             index = j - i + 1;
-            if (j + 1 >= ec.length()) {
+            if (j + 1 >= ex.length()) {
                 break;
-            } else if (!(Character.isDigit(ec.charAt(j + 1)))) {
+            } else if (!(Character.isDigit(ex.charAt(j + 1)))) {
                 break;
             }
         }
         return index;
     }
 
-    /*
-        Convierte la cadena de caracteres en un arreglo con cada termino
-        Si hay dos numeros seguidos se verifica aquí
-    */
-    private ArrayList<String> toArrayList(String ecuacion) {
-        ArrayList<String> ec = new ArrayList<>();
-        for (int i = 0; i < ecuacion.length();) {
-            int j = getIndexNumbers(ecuacion, i);
-            ec.add(ecuacion.substring(i, i + j));
+    /**
+     * Convierte la cadena en un Array con cada termino como elemento
+     *
+     * @param expresion es la expresion a convertir
+     * @return el Array de terminos
+     */
+    private ArrayList<String> toArrayList(String expresion) {
+        ArrayList<String> ex = new ArrayList<>();
+        for (int i = 0; i < expresion.length();) {
+            int j = getIndexNumbers(expresion, i);
+            ex.add(expresion.substring(i, i + j));
+
+            try {
+                if (expresion.charAt(i) == ')' && expresion.charAt(i + 1) == '(') {
+                    expresion = expresion.substring(0, i + 1) + "*" + expresion.substring(i + 1);
+                }
+            } catch (Exception e) {
+
+            }
             i += j;
         }
-        return ec;
+        return ex;
     }
 
-    /*
-        -Crea el árbol de expresiones aritmeticas
-        -Si es un número el termino evaluado va a la pila de terminos
-        -Si no va a la pila de operaciones
-        -Se crean subarboles de izquierda a derecha leyendo el arreglo de la
-        expresion aritmetica. Formando subárboles según la prioridad del operador
-        -Formando subarboles al desapilar las pilas, 2 de terminos y uno de operacion,
-        operacion es el padre de estos, el subarbol es un nuevo termino y se apila
-        -Como lo que está dentro del parentesis se realiza primero, se crea un subárbol
-        de todo lo que esté contenido en ello
-        -Una vez se recorre todo el arreglo si aun quedan terminos en las pilas
-        se van desapilando los terminos y creando subarboles hasta que solo quede uno
-        ese subarbol es el arbol de expresion aritmetica
-    */
-    private NodoString Creacion(String ecuacion) {
+    /**
+     * Crea ell árbol de expresion aritmetica de izquierda a derecha y desde la
+     * más alta prioridad hasta la mínima
+     *
+     * @param expresion es la expresion a convertir en árbol
+     * @return el arbol de expresion aritmetica construido o un valor null
+     */
+    private NodoString Creacion(String expresion) {
         Stack<NodoString> pilaTerminos = new Stack<>();
         Stack<NodoString> pilaOperaciones = new Stack<>();
         NodoString nodoTermino;
 
-        ArrayList<String> ec = toArrayList(ecuacion);
+        ArrayList<String> ec = toArrayList(expresion);
 
         for (int i = 0; i < ec.size(); i++) {
             String termino = ec.get(i);
@@ -199,21 +241,24 @@ public class ArbolExpArit extends ArbolBin {
             pilaTerminos.push(construirTermino(pilaTerminos, pilaOperaciones));
         }
 
-        return pilaTerminos.pop();
+        if (!pilaTerminos.empty()) {
+            return pilaTerminos.pop();
+        }
+        return null;
     }
 
-    /*
-        Recorre en postOrden pero también realiza la operacion aritmetica
-    */
+    /**
+     * Recorre en postOrden pero también realiza la operacion aritmetica
+     */
     public String postOrden() {
         ArrayList<String> list = new ArrayList<>();
-        Stack<String> ecuacion = new Stack<>();
+        Stack<String> expresion = new Stack<>();
         System.out.print("Postorder:");
-        postOrden(root, ecuacion, list);
+        postOrden(root, expresion, list);
 
         System.out.println(list);
-        if (!ecuacion.empty()) {
-            String u=ecuacion.pop();
+        if (!expresion.empty()) {
+            String u = expresion.pop();
             System.out.println("La solución de la ecuacion es: " + u);
             return u;
         } else {
@@ -222,31 +267,39 @@ public class ArbolExpArit extends ArbolBin {
         return "Ecuacion no valida";
     }
 
-    /*
-        Realiza el verdadero recorrido y con una pila realiza la operacion por la notacion polaca inversa
-    */
-    private void postOrden(NodoString nodo, Stack<String> ecuacion, ArrayList<String> listaPostOrden) {
+    /**
+     * Realiza el recorrido recursivo, realiza la operación en notación polaca
+     * inversa usando una pila y almacena el postOrden en un ArrayList
+     *
+     * @param nodo es el nodo actual del recorrido
+     * @param expresion la expresion aritmetica
+     * @param listaPostOrden el ArrayList donde se guarda el recorrido postOrden
+     */
+    private void postOrden(NodoString nodo, Stack<String> expresion, ArrayList<String> listaPostOrden) {
         if (nodo == null) {
             return;
         }
-        postOrden(nodo.getIzq(), ecuacion, listaPostOrden);
-        postOrden(nodo.getDer(), ecuacion, listaPostOrden);
+        postOrden(nodo.getIzq(), expresion, listaPostOrden);
+        postOrden(nodo.getDer(), expresion, listaPostOrden);
 
         String dato = nodo.getDato();
-        ecuacion.push(dato);
+        expresion.push(dato);
         listaPostOrden.add(dato);
 
-        resolverEcuacion(ecuacion, dato);
+        resolverEcuacion(expresion, dato);
     }
 
-    /*
-        Resuelve la operacion con una pila
-    */
-    private void resolverEcuacion(Stack<String> ecuacion, String dato) {
+    /**
+     * Resuelve la expresion por medio de la notacion polaca inversa
+     *
+     * @param expresion la expresion evaluada
+     * @param dato es la operación que se realiza
+     */
+    private void resolverEcuacion(Stack<String> expresion, String dato) {
         if (isOperator(dato.charAt(0))) {
-            String operador = ecuacion.pop();
-            double b = Double.parseDouble(ecuacion.pop());
-            double a = Double.parseDouble(ecuacion.pop());
+            String operador = expresion.pop();
+            double b = Double.parseDouble(expresion.pop());
+            double a = Double.parseDouble(expresion.pop());
 
             double doble;
             switch (operador.charAt(0)) {
@@ -265,20 +318,30 @@ public class ArbolExpArit extends ArbolBin {
                 default:
                     doble = Math.pow(a, b);
             }
-            ecuacion.push(String.valueOf(doble));
+            expresion.push(String.valueOf(doble));
         }
     }
+
     
+    /**
+     * Calcula la altura de un árbol donde el nodo especificado se toma como raíz
+     * @param nodo El nodo raiz del  sub árbol del cual se quiere calcular su altura (valor string)
+     * @return La altura del subarbol
+     */
     public int calcularAltura(NodoString nodo){
         return calcularAlturaS(nodo)-1;
     }
     
-
+    /**
+     * Calcula la altura de un nodo, conociendo que es parte del subarbol, por lo que se cuenta a él mismo para el cálculo (valor string)
+     * @param nodo El nodo que se quiere conocer su altura como subárbol
+     * @return La altura del subarbol
+     */
     private int calcularAlturaS(NodoString nodo){
         if(nodo==null)
             return 0;
-        int i=calcularAlturaS(nodo.izq);
-        int d=calcularAlturaS(nodo.der);
-        return (Integer.max(i, d)+1);
+        int i = calcularAlturaS(nodo.izq);
+        int d = calcularAlturaS(nodo.der);
+        return (Integer.max(i, d) + 1);
     }
 }

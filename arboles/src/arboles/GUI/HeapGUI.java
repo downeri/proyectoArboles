@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package arboles.GUI;
 
 import arboles.Heap;
@@ -13,17 +8,19 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author Downe
+ *Clase para operaciones con Heaps
+ * @author Equipo 5
  */
 public final class HeapGUI extends javax.swing.JFrame {
 
     /**
-     * Creates new form ArbolAVL
+     * El árbol con el que se trabaja
      */
-    
     Heap arbol;
     
+    /**
+     * Crea una objeto de la clase
+     */
     public HeapGUI() {
         initComponents();
         arbol=new Heap();
@@ -40,48 +37,55 @@ public final class HeapGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        addButton = new javax.swing.JButton();
+        removeButton = new javax.swing.JButton();
+        showButton = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
+        addTextField = new javax.swing.JTextField();
+        removeTextField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Heap");
         setResizable(false);
 
-        jButton1.setText("Agregar a árbol");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        addButton.setText("Agregar a árbol");
+        addButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                addButtonActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Eliminar clave");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        removeButton.setText("Eliminar clave");
+        removeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                removeButtonActionPerformed(evt);
             }
         });
 
-        jButton4.setText("Mostrar árbol");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        showButton.setText("Mostrar árbol");
+        showButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                showButtonActionPerformed(evt);
             }
         });
 
-        jButton5.setText("Menú Anterior");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        backButton.setText("Menú Anterior");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                backButtonActionPerformed(evt);
             }
         });
 
-        jTextField1.setToolTipText("");
-        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+        addTextField.setToolTipText("");
+        addTextField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextField1KeyPressed(evt);
+                addTextFieldKeyPressed(evt);
+            }
+        });
+
+        removeTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                removeTextFieldKeyPressed(evt);
             }
         });
 
@@ -93,42 +97,53 @@ public final class HeapGUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(113, 113, 113)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(87, 87, 87)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(showButton, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton1))
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(89, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(addTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
+                                    .addComponent(removeTextField))
+                                .addGap(12, 12, 12)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(removeButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(addButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                .addContainerGap(83, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(137, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(addButton)
+                    .addComponent(addTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton3)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(removeButton)
+                    .addComponent(removeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton4)
+                .addComponent(showButton)
                 .addGap(81, 81, 81)
-                .addComponent(jButton5)
+                .addComponent(backButton)
                 .addGap(46, 46, 46))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    /**
+    * Eventos a realizar si el boton de agregar es presionado
+    * @param evt El evento ocurrido
+    */
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         leer();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_addButtonActionPerformed
+    /**
+    * Eventos a realizar si el boton de mostrar es presionado
+    * @param evt El evento ocurrido
+    */
+    private void showButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showButtonActionPerformed
         if(arbol.root==null)
             JOptionPane.showMessageDialog(this, "No hay elementos para mostrar","Mensaje",JOptionPane.WARNING_MESSAGE);
         else{
@@ -138,33 +153,45 @@ public final class HeapGUI extends javax.swing.JFrame {
             icon.setImage(icon.getImage().getScaledInstance(490, 350, Image.SCALE_DEFAULT));
             t.mostrarImagen();
         }
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-//        String o=JOptionPane.showInputDialog("Inserta un número");
-//        try{
-//            if(arbol.remove(Integer.parseInt(o)))
-//                JOptionPane.showMessageDialog(this, "El valor se ha removido del árbol :D");
-//            else
-//                JOptionPane.showMessageDialog(this, "El valor no se encuentra en el árbol :(");
-//        }catch(NumberFormatException u){
-//            JOptionPane.showMessageDialog(this, "No es un numero");
-//        }
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_showButtonActionPerformed
+    /**
+    * Eventos a realizar si el boton de eliminar es presionado
+    * @param evt El evento ocurrido
+    */
+    private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
+        borrar();
+    }//GEN-LAST:event_removeButtonActionPerformed
+    /**
+    * Eventos a realizar si el boton de regresar es presionado
+    * @param evt El evento ocurrido
+    */
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         this.dispose();
-    }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
+    }//GEN-LAST:event_backButtonActionPerformed
+    /**
+    * Eventos a realizar si se escribe en el campo de texto addTextField un salto de linea
+    * @param evt El evento ocurrido
+    */
+    private void addTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_addTextFieldKeyPressed
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
             leer();
         }
-    }//GEN-LAST:event_jTextField1KeyPressed
+    }//GEN-LAST:event_addTextFieldKeyPressed
+    /**
+    * Eventos a realizar si se escribe en el campo de texto removeTextField un salto de linea
+    * @param evt El evento ocurrido
+    */
+    private void removeTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_removeTextFieldKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            borrar();
+        }
+    }//GEN-LAST:event_removeTextFieldKeyPressed
 
-    
+    /**
+     * Se obtiene el texto de addTextField y agrega el valor entero al árbol
+     */
     private void leer(){
-        String o=jTextField1.getText();
+        String o=addTextField.getText();
         try{
             if(arbol.buscar(Integer.parseInt(o)))
                 JOptionPane.showMessageDialog(this, "El valor se encuentra en el árbol, no se puede insertar","Mensaje",JOptionPane.WARNING_MESSAGE);
@@ -175,13 +202,31 @@ public final class HeapGUI extends javax.swing.JFrame {
         }catch(NumberFormatException u){
             JOptionPane.showMessageDialog(this, "No es un numero");
         }
-        jTextField1.setText("");
+        addTextField.setText("");
     }
+    /**
+     * Se obtiene el texto de removeTextField y elimina el nodo con el valor del árbol
+     */
+    private void borrar() {
+        String o=removeTextField.getText();
+        try{
+            if(arbol.remove(Integer.parseInt(o)))
+                JOptionPane.showMessageDialog(this, "El valor se ha removido del árbol :D");
+            else
+                JOptionPane.showMessageDialog(this, "El valor no se encuentra en el árbol :(");
+        }catch(NumberFormatException u){
+            JOptionPane.showMessageDialog(this, "No es un numero");
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    public javax.swing.JButton jButton5;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton addButton;
+    private javax.swing.JTextField addTextField;
+    public javax.swing.JButton backButton;
+    private javax.swing.JButton removeButton;
+    private javax.swing.JTextField removeTextField;
+    private javax.swing.JButton showButton;
     // End of variables declaration//GEN-END:variables
+
+    
 }

@@ -20,21 +20,39 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
 /**
- *
- * @author Downe
+ *Clase que genera una imagen a partir de n árbol binario
+ * @author Equipo 5
  */
 public class TreeImage {
-    
+    /**
+     * Arbol con el que se trabaja
+     */
     ArbolBin arbol;
+    /**
+     * La imagen generada;
+     */
     BufferedImage image;
+    /**
+     * Ancho de la imagen
+     */
     int width;
+    /**
+     * Altura de la imagen
+     */
     int height;
+    /**
+     * Gráficos para generar la imagen
+     */
     Graphics2D g2d;
     
     protected TreeImage(){
         
     }
     
+    /**
+     * Constructor, crea un objeto de la clase
+     * @param arbol El árbol que se utilizará 
+     */
     public TreeImage(ArbolBin arbol){
         this.arbol=arbol;
         int al=(arbol.calcularAltura(arbol.root)+1);
@@ -46,7 +64,10 @@ public class TreeImage {
         g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
     }
     
-    
+    /**
+     * Crea una imagen a partir del árbol binario
+     * @return Imagen del árbol
+     */
     public BufferedImage generarImagenArbol(){
         g2d.setColor(new Color(240,240,240));
         g2d.fillRect(0, 0, width, height);
@@ -56,7 +77,13 @@ public class TreeImage {
         preOrderPrint(arbol.root,x,y);
         return image;
     }
-
+    
+    /**
+     * Genera circulos y lineas para ilustrar un árbol binario
+     * @param nodo El nodo que estpa siendo impreso
+     * @param x Posición del nodo en x
+     * @param y Posición del nodo en y
+     */
     private void preOrderPrint(Nodo nodo, int x, int y) {
         if(nodo==null)
             return;
@@ -73,7 +100,10 @@ public class TreeImage {
         preOrderPrint(nodo.izq, (int) (x-(20*Math.pow(asab,2))),y+75);
         preOrderPrint(nodo.der,(int) (x+(20*Math.pow(asab,2))),y+75);
     }
-
+    
+    /**
+     * Guarda la imagen y la abre
+     */
     public void mostrarImagen() {
         Desktop d=Desktop.getDesktop();
         File file=new File("Imagen.png");
