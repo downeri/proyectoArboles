@@ -22,12 +22,19 @@ import javax.imageio.ImageIO;
 
 /**
  *
- * @author Downe
+ * @author Equipo 5
  */
 public class TreeImageString extends TreeImage{
     
+    /**
+     * Arbol con el que se trabaja
+     */
     ArbolExpArit arbol;
-
+    
+    /**
+     * Constructor, crea un objeto de la clase
+     * @param arbol El árbol que se utilizará 
+     */
     public TreeImageString(ArbolExpArit arbol){
         super();
         this.arbol=arbol;
@@ -40,7 +47,10 @@ public class TreeImageString extends TreeImage{
         g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
     }
     
-    
+    /**
+     * Crea una imagen a partir del árbol binario
+     * @return Imagen del árbol
+     */
     @Override
     public BufferedImage generarImagenArbol(){
         g2d.setColor(new Color(240,240,240));
@@ -51,7 +61,12 @@ public class TreeImageString extends TreeImage{
         preOrderPrint(arbol.root,x,y);
         return image;
     }
-
+    /**
+     * Genera circulos y lineas para ilustrar un árbol binario
+     * @param nodo El nodo que estpa siendo impreso
+     * @param x Posición del nodo en x
+     * @param y Posición del nodo en y
+     */
     private void preOrderPrint(NodoString nodo, int x, int y) {
         if(nodo==null)
             return;
@@ -68,7 +83,10 @@ public class TreeImageString extends TreeImage{
         preOrderPrint(nodo.izq, (int) (x-(20*Math.pow(asab,2))),y+75);
         preOrderPrint(nodo.der,(int) (x+(20*Math.pow(asab,2))),y+75);
     }
-
+    
+    /**
+     * Guarda la imagen y la abre
+     */
     @Override
     public void mostrarImagen() {
         Desktop d=Desktop.getDesktop();

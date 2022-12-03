@@ -1,12 +1,11 @@
 package arboles;
 
-<<<<<<< Updated upstream
+
 /**
  * La clase modela una arbol de expresiones aritmeticas donde cada nodo almacena
  * datos de tipo string
  */
-=======
->>>>>>> Stashed changes
+
 import java.util.Stack;
 import java.util.ArrayList;
 
@@ -328,25 +327,7 @@ public class ArbolExpArit extends ArbolBin {
             expresion.push(String.valueOf(doble));
         }
     }
-<<<<<<< Updated upstream
 
-    /**
-     * @param nodo es el nodo al que se calcula su altura
-     * @return devuelve la altura del nodo
-     */
-    public int calcularAltura(NodoString nodo) {
-        return calcularAlturaS(nodo) - 1;
-    }
-
-    /**
-     * @param nodo es el nodo al que se calcula su altura recursivamente
-     * buscando en sus nodos hijos
-     * @return devuelve la altura máxima de sus hijos más uno para su propia
-     * altura
-     */
-    private int calcularAlturaS(NodoString nodo) {
-        if (nodo == null) {
-=======
     
     /**
      * Calcula la altura de un árbol donde el nodo especificado se toma como raíz
@@ -364,9 +345,7 @@ public class ArbolExpArit extends ArbolBin {
      */
     private int calcularAlturaS(NodoString nodo){
         if(nodo==null)
->>>>>>> Stashed changes
             return 0;
-        }
         int i = calcularAlturaS(nodo.izq);
         int d = calcularAlturaS(nodo.der);
         return (Integer.max(i, d) + 1);

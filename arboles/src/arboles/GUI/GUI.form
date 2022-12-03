@@ -26,11 +26,11 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
-              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+              <Component id="avlButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="91" max="-2" attributes="0"/>
-              <Component id="jButton2" min="-2" pref="65" max="-2" attributes="0"/>
+              <Component id="heapButton" min="-2" pref="65" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
-              <Component id="jButton3" min="-2" max="-2" attributes="0"/>
+              <Component id="aeaButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="79" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -40,9 +40,9 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace pref="56" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jButton1" alignment="3" min="-2" pref="71" max="-2" attributes="0"/>
-                  <Component id="jButton2" alignment="3" min="-2" pref="71" max="-2" attributes="0"/>
-                  <Component id="jButton3" alignment="3" min="-2" pref="71" max="-2" attributes="0"/>
+                  <Component id="avlButton" alignment="3" min="-2" pref="71" max="-2" attributes="0"/>
+                  <Component id="heapButton" alignment="3" min="-2" pref="71" max="-2" attributes="0"/>
+                  <Component id="aeaButton" alignment="3" min="-2" pref="71" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
           </Group>
@@ -50,28 +50,28 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="avlButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#xc1;rbol AVL"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="avlButtonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton2">
+    <Component class="javax.swing.JButton" name="heapButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Heap"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="heapButtonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton3">
+    <Component class="javax.swing.JButton" name="aeaButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#xc1;rbol de Expresi&#xf3;n Aritm&#xe9;tica"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="aeaButtonActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

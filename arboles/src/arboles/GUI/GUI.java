@@ -1,20 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package arboles.GUI;
 
 import java.awt.event.ActionEvent;
 
 /**
- *
- * @author Downe
+ *Menu de los árboles
+ * @author Equipo 5
  */
 public class GUI extends javax.swing.JFrame {
 
     /**
-     * Creates new form GUI
+     * Constructor
      */
     public GUI() {
         initComponents();
@@ -30,31 +25,31 @@ public class GUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        avlButton = new javax.swing.JButton();
+        heapButton = new javax.swing.JButton();
+        aeaButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Arbolitos :D");
 
-        jButton1.setText("Árbol AVL");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        avlButton.setText("Árbol AVL");
+        avlButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                avlButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Heap");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        heapButton.setText("Heap");
+        heapButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                heapButtonActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Árbol de Expresión Aritmética");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        aeaButton.setText("Árbol de Expresión Aritmética");
+        aeaButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                aeaButtonActionPerformed(evt);
             }
         });
 
@@ -64,11 +59,11 @@ public class GUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(87, 87, 87)
-                .addComponent(jButton1)
+                .addComponent(avlButton)
                 .addGap(91, 91, 91)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(heapButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(61, 61, 61)
-                .addComponent(jButton3)
+                .addComponent(aeaButton)
                 .addContainerGap(79, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -76,38 +71,47 @@ public class GUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(56, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(avlButton, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(heapButton, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(aeaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(73, 73, 73))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    /**
+     * Crea y muestra un objeto de la clase ArbolAVLGUI
+     * @param evt 
+     */
+    private void avlButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avlButtonActionPerformed
         ArbolAVLGUI o=new ArbolAVLGUI();
         this.setVisible(false);
         o.backButton.addActionListener((ActionEvent e)->{
             this.setVisible(true);
         });
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_avlButtonActionPerformed
+    /**
+     * Crea y muestra un objeto de la clase Heap
+     * @param evt 
+     */
+    private void heapButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_heapButtonActionPerformed
         HeapGUI o=new HeapGUI();
         this.setVisible(false);
-        o.jButton5.addActionListener((ActionEvent e)->{
+        o.backButton.addActionListener((ActionEvent e)->{
             this.setVisible(true);
         });
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_heapButtonActionPerformed
+/**
+     * Crea y muestra un objeto de la clase EAGUI
+     * @param evt 
+     */
+    private void aeaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aeaButtonActionPerformed
         EAGUI o=new EAGUI();
         this.setVisible(false);
-        o.jButton5.addActionListener((ActionEvent e)->{
+        o.backButton.addActionListener((ActionEvent e)->{
             this.setVisible(true);
         });
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_aeaButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -145,8 +149,8 @@ public class GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton aeaButton;
+    private javax.swing.JButton avlButton;
+    private javax.swing.JButton heapButton;
     // End of variables declaration//GEN-END:variables
 }

@@ -8,7 +8,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
- * La clase permite la operación de las bibliotecas creadas
+ * La clase permite la operación de las biblioteca creada de Arbol AVL
  * @author Equipo 5
  */
 public final class ArbolAVLGUI extends javax.swing.JFrame {
@@ -158,7 +158,7 @@ public final class ArbolAVLGUI extends javax.swing.JFrame {
         agregar();
     }//GEN-LAST:event_addButtonActionPerformed
     /**
-     * Eventos a realizar si el boton de agregar es presionado
+     * Eventos a realizar si el boton de mostrar es presionado
      * @param evt El evento ocurrido
      */
     private void showButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showButtonActionPerformed
