@@ -38,6 +38,12 @@ public class ArbolBin {
         this.root=root;
     }
     
+    public void add(Nodo padre, Nodo hijo, int lado){
+	if(lado==0)
+            padre.setIzq(hijo);
+	else
+            padre.setDer(hijo);
+    }
     
     /**
      * Elimina el nodo especificado del árbol
@@ -202,11 +208,6 @@ public class ArbolBin {
         return false;
     }
     
-    /**
-     * Busca en el arbol un nodo que contenga el valor especificado 
-     * @param valor El entero que se quiere encontrar en el árbol
-     * @return El nodo con el valor, si no se encuentra, regresa Null
-     */
     public Nodo encontrarNodo(int valor){
         Nodo r = this.root;
 	Queue<Nodo> queue = new LinkedList();
@@ -224,20 +225,19 @@ public class ArbolBin {
 	}
         return null;
     }
-    
-    /**
-     * Calcula la altura de un árbol donde el nodo especificado se toma como raíz
-     * @param nodo El nodo raiz del  sub árbol del cual se quiere calcular su altura (valor entero)
-     * @return La altura del subarbol
+     /**
+     * Calcula la altura del árbol
+     * @param nodo El nodo del que se quiere conocer su altura
+     * @return Regresa la altura más grande de sus subárboles
      */
     public int calcularAltura(Nodo nodo){
         return calcularAlturaS(nodo)-1;
     }
     
     /**
-     * Calcula la altura de un nodo, conociendo que es parte del subarbol, por lo que se cuenta a él mismo para el cálculo (valor entero)
-     * @param nodo El nodo que se quiere conocer su altura como subárbol
-     * @return La altura del subarbol
+     * Calcula la altura de el nodo como subárbol, contandose a él mismo
+     * @param nodo El nodo del cual se quiere conocer cual es su altura como subarbol
+     * @return La altura más grande de sus subárboles + 1
      */
     private int calcularAlturaS(Nodo nodo){
         if(nodo==null)
@@ -247,12 +247,20 @@ public class ArbolBin {
         return (Integer.max(i, d)+1);
     }
     
-    /**
-     * Busca en qué lado de un nodo padre se encuentra un nodo hijo
-     * @param padre El nodo padre
-     * @param hijo  El nodo hijo
-     * @return 0 si es el hijo izquierdo, 1 si es el derecho y -1 si no es su hijo
-     */
+    public LinkedList<Nodo> preOrder(){
+        LinkedList<Nodo> preOrderList=new LinkedList<>();
+        doPreOrder(this.root,preOrderList);
+        return preOrderList;
+    }
+    
+    private void doPreOrder(Nodo nodo,LinkedList<Nodo> l){
+        if(nodo==null)
+            return;
+        l.add(nodo);
+        doPreOrder(nodo.izq,l);
+        doPreOrder(nodo.der,l);
+    }
+    
     public int getLadoHijo(Nodo padre, Nodo hijo){
         if(padre.izq==hijo)
             return 0;
@@ -260,4 +268,8 @@ public class ArbolBin {
             return 1;
         return -1;
     }
+    
+    
+    
+    
 }

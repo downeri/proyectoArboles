@@ -6,7 +6,14 @@ package arboles;
  */
 public class ArbolBinBusq extends ArbolBin{
     
-
+    /**
+     * 
+     * @deprecated 
+     */
+    @Override
+    public void add(Nodo padre, Nodo hijo, int lado){
+        
+    }
     /**
      * Encuentra la posición que le corresponde al nodo de acuerdo a su valor y lo inserta en el árbol
      * @param nodo El nodo a insertar en el árbol
@@ -56,11 +63,6 @@ public class ArbolBinBusq extends ArbolBin{
         return false;
     }
     
-    /**
-     * Busca un nodo con cierto valor
-     * @param valor El numero entero a buscar
-     * @return El nodo con el valor esperado, null si no hay ninguno
-     */
      public Nodo buscarNodoPorValor(int valor){
         Nodo current=this.root;
         while(current!=null){
