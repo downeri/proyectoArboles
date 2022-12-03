@@ -69,7 +69,7 @@ public class Nodo {
     public void setLado(Nodo nodo, int lado){
         if(lado==0)
             this.izq=nodo;
-        else
+        else if(lado>0)
             this.der=nodo;
     }
     

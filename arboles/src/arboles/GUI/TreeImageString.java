@@ -7,7 +7,8 @@ package arboles.GUI;
 
 
 import arboles.ArbolBin;
-import arboles.Nodo;
+import arboles.ArbolExpArit;
+import arboles.NodoString;
 import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.Graphics2D;
@@ -23,19 +24,12 @@ import javax.imageio.ImageIO;
  *
  * @author Downe
  */
-public class TreeImage {
+public class TreeImageString extends TreeImage{
     
-    ArbolBin arbol;
-    BufferedImage image;
-    int width;
-    int height;
-    Graphics2D g2d;
-    
-    protected TreeImage(){
-        
-    }
-    
-    public TreeImage(ArbolBin arbol){
+    ArbolExpArit arbol;
+
+    public TreeImageString(ArbolExpArit arbol){
+        super();
         this.arbol=arbol;
         int al=(arbol.calcularAltura(arbol.root)+1);
         this.height=al*100;
@@ -47,6 +41,7 @@ public class TreeImage {
     }
     
     
+    @Override
     public BufferedImage generarImagenArbol(){
         g2d.setColor(new Color(240,240,240));
         g2d.fillRect(0, 0, width, height);
@@ -57,7 +52,7 @@ public class TreeImage {
         return image;
     }
 
-    private void preOrderPrint(Nodo nodo, int x, int y) {
+    private void preOrderPrint(NodoString nodo, int x, int y) {
         if(nodo==null)
             return;
         g2d.drawOval(x, y, 50, 50);
@@ -74,6 +69,7 @@ public class TreeImage {
         preOrderPrint(nodo.der,(int) (x+(20*Math.pow(asab,2))),y+75);
     }
 
+    @Override
     public void mostrarImagen() {
         Desktop d=Desktop.getDesktop();
         File file=new File("Imagen.png");
@@ -81,7 +77,7 @@ public class TreeImage {
             ImageIO.write(image, "png", file);
             d.open(file);
         } catch (IOException ex) {
-            Logger.getLogger(TreeImage.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TreeImageString.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

@@ -7,16 +7,16 @@ package arboles;
 import java.util.Stack;
 import java.util.ArrayList;
 
-public class ArbolExpArit {
+public class ArbolExpArit extends ArbolBin {
 
-    NodoString root;
+    public NodoString root;
     
     /*
         Método constructor
         Elimina todo espacio, tabulacion y otros raros
         Se verifica la validez de la ecuacion 
     */
-    ArbolExpArit(String ecuacion) {
+    public ArbolExpArit(String ecuacion) {
         ecuacion = ecuacion.replaceAll("\\s", "");
         if (validez(ecuacion)) {
             root = Creacion(ecuacion);
@@ -205,7 +205,7 @@ public class ArbolExpArit {
     /*
         Recorre en postOrden pero también realiza la operacion aritmetica
     */
-    public void postOrden() {
+    public String postOrden() {
         ArrayList<String> list = new ArrayList<>();
         Stack<String> ecuacion = new Stack<>();
         System.out.print("Postorder:");
@@ -213,10 +213,13 @@ public class ArbolExpArit {
 
         System.out.println(list);
         if (!ecuacion.empty()) {
-            System.out.println("La solución de la ecuacion es: " + ecuacion.pop());
+            String u=ecuacion.pop();
+            System.out.println("La solución de la ecuacion es: " + u);
+            return u;
         } else {
             System.out.println("Ecuacion no valida");
         }
+        return "Ecuacion no valida";
     }
 
     /*
@@ -264,5 +267,18 @@ public class ArbolExpArit {
             }
             ecuacion.push(String.valueOf(doble));
         }
+    }
+    
+    public int calcularAltura(NodoString nodo){
+        return calcularAlturaS(nodo)-1;
+    }
+    
+
+    private int calcularAlturaS(NodoString nodo){
+        if(nodo==null)
+            return 0;
+        int i=calcularAlturaS(nodo.izq);
+        int d=calcularAlturaS(nodo.der);
+        return (Integer.max(i, d)+1);
     }
 }
