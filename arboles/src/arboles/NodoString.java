@@ -4,22 +4,22 @@ package arboles;
  * La clase modela un nodo con datos de tipos String
  */
 
-public class NodoString {
+public class NodoString extends Nodo{
     
     /**
      * Almacena el dato
      */
-    String dato;
+    public String valor;
     
     /**
      * Hace referencia al hijo izquierdo
      */
-    NodoString izq;
+    public NodoString izq;
     
     /**
      * Hace referencia al hijo derecho
      */
-    NodoString der;
+    public NodoString der;
 
     
     /**

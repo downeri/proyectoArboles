@@ -167,7 +167,9 @@ public final class HeapGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1KeyPressed
 
     private void jTextField2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyPressed
-        borrar();
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            borrar();
+        }
     }//GEN-LAST:event_jTextField2KeyPressed
 
     

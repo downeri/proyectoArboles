@@ -13,13 +13,13 @@ public class ArbolExpArit extends ArbolBin {
     /**
      * La referencia del nodo raíz
      */
-    NodoString root;
+    public NodoString root;
 
     /**
      * Método constructor
      * @param expresion es la cadena de caracteres que representa la expresion
      */
-    ArbolExpArit(String expresion) {
+    public ArbolExpArit(String expresion) {
         expresion = expresion.replaceAll("\\s", "");
         if (validez(expresion)) {
             root = Creacion(expresion);
@@ -219,7 +219,7 @@ public class ArbolExpArit extends ArbolBin {
     /**
      * Recorre en postOrden pero también realiza la operacion aritmetica
      */
-    public void postOrden() {
+    public String postOrden() {
         ArrayList<String> list = new ArrayList<>();
         Stack<String> ecuacion = new Stack<>();
         System.out.print("Postorder:");
