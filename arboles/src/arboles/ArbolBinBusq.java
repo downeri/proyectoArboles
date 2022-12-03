@@ -63,6 +63,11 @@ public class ArbolBinBusq extends ArbolBin{
         return false;
     }
     
+    /**
+     * Busca un nodo con cierto valor
+     * @param valor El numero entero a buscar
+     * @return El nodo con el valor esperado, null si no hay ninguno
+     */
      public Nodo buscarNodoPorValor(int valor){
         Nodo current=this.root;
         while(current!=null){

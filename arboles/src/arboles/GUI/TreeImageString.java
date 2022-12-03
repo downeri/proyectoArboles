@@ -6,7 +6,6 @@
 package arboles.GUI;
 
 
-import arboles.ArbolBin;
 import arboles.ArbolExpArit;
 import arboles.NodoString;
 import java.awt.Color;
@@ -21,7 +20,7 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
 /**
- *
+ *La Clase que genera una imagen a partir de un árbol binario con nodo tipo string
  * @author Equipo 5
  */
 public class TreeImageString extends TreeImage{

@@ -86,7 +86,7 @@ public class GUI extends javax.swing.JFrame {
     private void avlButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avlButtonActionPerformed
         ArbolAVLGUI o=new ArbolAVLGUI();
         this.setVisible(false);
-        o.jButton5.addActionListener((ActionEvent e)->{
+        o.backButton.addActionListener((ActionEvent e)->{
             this.setVisible(true);
         });
     }//GEN-LAST:event_avlButtonActionPerformed

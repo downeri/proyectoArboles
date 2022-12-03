@@ -196,6 +196,11 @@ public class ArbolAVL extends ArbolBinBusq{
         equilibrar(bfsNoNull, nodo);
     }
     
+    /**
+     * Busca un nodo que contenga el valor especificado y lo elimina del árbol
+     * @param valor El valor numérico que se desea eliminar del árbol
+     * @return True si la operación se realizó, false si no
+     */
     public boolean remove(int valor){
         Nodo n=buscarNodoPorValor(valor);
         if(n!=null){

@@ -19,11 +19,13 @@ import javax.swing.JOptionPane;
 public final class ArbolAVLGUI extends javax.swing.JFrame {
 
     /**
-     * Creates new form ArbolAVL
+     * El árbol con el que se trabaja
      */
-    
     ArbolAVL arbol;
     
+    /**
+     * Constructor
+     */
     public ArbolAVLGUI() {
         initComponents();
         arbol=new ArbolAVL();
@@ -40,70 +42,79 @@ public final class ArbolAVLGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jButton6 = new javax.swing.JButton();
+        addButton = new javax.swing.JButton();
+        searchButton = new javax.swing.JButton();
+        removeButton = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
+        addTextField = new javax.swing.JTextField();
+        searchTextField = new javax.swing.JTextField();
+        removeTextField = new javax.swing.JTextField();
+        showButton = new javax.swing.JButton();
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
+        jButton6.setText("jButton6");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Árbol AVL");
         setResizable(false);
 
-        jButton1.setText("Agregar a árbol");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        addButton.setText("Agregar a árbol");
+        addButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                addButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Buscar un valor");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        searchButton.setText("Buscar un valor");
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                searchButtonActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Eliminar clave");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        removeButton.setText("Eliminar clave");
+        removeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                removeButtonActionPerformed(evt);
             }
         });
 
-        jButton4.setText("Mostrar árbol");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        backButton.setText("Menú Anterior");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                backButtonActionPerformed(evt);
             }
         });
 
-        jButton5.setText("Menú Anterior");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-
-        jTextField1.setToolTipText("");
-        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+        addTextField.setToolTipText("");
+        addTextField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextField1KeyPressed(evt);
+                addTextFieldKeyPressed(evt);
             }
         });
 
-        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+        searchTextField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextField2KeyPressed(evt);
+                searchTextFieldKeyPressed(evt);
             }
         });
 
-        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+        removeTextField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextField3KeyPressed(evt);
+                removeTextFieldKeyPressed(evt);
+            }
+        });
+
+        showButton.setText("Mostrar árbol");
+        showButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showButtonActionPerformed(evt);
             }
         });
 
@@ -112,104 +123,131 @@ public final class ArbolAVLGUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(86, Short.MAX_VALUE)
+                .addContainerGap(92, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(125, 125, 125))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(showButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
-                                    .addComponent(jTextField2)
-                                    .addComponent(jTextField3))
+                                    .addComponent(addTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
+                                    .addComponent(searchTextField)
+                                    .addComponent(removeTextField))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addGap(84, 84, 84))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(125, 125, 125))))
+                                    .addComponent(removeButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(searchButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(addButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(84, 84, 84))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(171, 171, 171)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(addButton)
+                    .addComponent(addTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(searchButton)
+                    .addComponent(searchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 157, Short.MAX_VALUE)
-                .addComponent(jButton5)
+                    .addComponent(removeButton)
+                    .addComponent(removeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(showButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 150, Short.MAX_VALUE)
+                .addComponent(backButton)
                 .addGap(31, 31, 31))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        agregar();
-    }//GEN-LAST:event_addButtonActionPerformed
+                                           
     /**
-     * Eventos a realizar si el boton de mostrar es presionado
-     * @param evt El evento ocurrido
+     * Si existe un árbol, crea un objeto TreeImage con el árbol y lo muestra
      */
-    private void showButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showButtonActionPerformed
+    private void mostrar() {                                           
         if(arbol.root==null)
             JOptionPane.showMessageDialog(this, "No hay elementos para mostrar","Mensaje",JOptionPane.WARNING_MESSAGE);
         else{
             TreeImage t=new TreeImage(arbol);
-            Image i=t.generarImagenArbol();
-            ImageIcon icon=new ImageIcon(i);
-            icon.setImage(icon.getImage().getScaledInstance(490, 350, Image.SCALE_DEFAULT));
+            t.generarImagenArbol();
             t.mostrarImagen();
         }
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    }   
+    
+    /**
+    * Eventos a realizar si el boton de agregar es presionado
+    * @param evt El evento ocurrido
+    */
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        agregar();
+    }  
+    
+    /**
+    * Eventos a realizar si el boton de buscar es presionado
+    * @param evt El evento ocurrido
+    */
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
         buscar();
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_searchButtonActionPerformed
+    /**
+    * Eventos a realizar si el boton de eliminar es presionado
+    * @param evt El evento ocurrido
+    */
+    private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
         eliminar();
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_removeButtonActionPerformed
+    /**
+    * Eventos a realizar si el boton de regresar es presionado
+    * @param evt El evento ocurrido
+    */
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         this.dispose();
-    }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
+    }//GEN-LAST:event_backButtonActionPerformed
+    /**
+     * Se obtiene el texto de addTextField y agrega el valor entero al árbol
+     */
+    private void addTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_addTextFieldKeyPressed
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
             agregar();
         }
-    }//GEN-LAST:event_jTextField1KeyPressed
-
-    private void jTextField2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyPressed
+    }//GEN-LAST:event_addTextFieldKeyPressed
+    /**
+     * Se obtiene el texto de searchTextField y busca el valor en el árbol
+     */
+    private void searchTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchTextFieldKeyPressed
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
             buscar();
         }
-    }//GEN-LAST:event_jTextField2KeyPressed
-
-    private void jTextField3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyPressed
+    }//GEN-LAST:event_searchTextFieldKeyPressed
+    /**
+     * Se obtiene el texto de remove TextField y elimina el valor en el árbol
+     */
+    private void removeTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_removeTextFieldKeyPressed
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
             eliminar();
         }
-    }//GEN-LAST:event_jTextField3KeyPressed
+    }//GEN-LAST:event_removeTextFieldKeyPressed
+    /**
+    * Eventos a realizar si el boton de mostrar es presionado
+    * @param evt El evento ocurrido
+    */
+    private void showButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showButtonActionPerformed
+        mostrar();
+    }//GEN-LAST:event_showButtonActionPerformed
 
-    
+    /**
+     * Lee el texto en 
+     */
     private void agregar(){
-        String o=jTextField1.getText();
+        String o=addTextField.getText();
         try{
             if(arbol.buscar(Integer.parseInt(o)))
                 JOptionPane.showMessageDialog(this, "El valor se encuentra en el árbol, no se puede insertar","Mensaje",JOptionPane.WARNING_MESSAGE);
@@ -220,22 +258,11 @@ public final class ArbolAVLGUI extends javax.swing.JFrame {
         }catch(NumberFormatException u){
             JOptionPane.showMessageDialog(this, "No es un numero");
         }
-        jTextField1.setText("");
+        addTextField.setText("");
     }
     
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    public javax.swing.JButton jButton5;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    // End of variables declaration//GEN-END:variables
-
     private void buscar() {
-        String o=jTextField2.getText();
+        String o=searchTextField.getText();
         try{
             if(arbol.buscar(Integer.parseInt(o)))
                 JOptionPane.showMessageDialog(this, "El valor se encuentra en el árbol :D");
@@ -244,11 +271,11 @@ public final class ArbolAVLGUI extends javax.swing.JFrame {
         }catch(NumberFormatException u){
             JOptionPane.showMessageDialog(this, "No es un numero");
         }
-        jTextField2.setText("");
+        searchTextField.setText("");
     }
 
     private void eliminar() {
-        String o=jTextField3.getText();
+        String o=removeTextField.getText();
         try{
             if(arbol.remove(Integer.parseInt(o)))
                 JOptionPane.showMessageDialog(this, "El valor se ha removido del árbol :D");
@@ -257,6 +284,22 @@ public final class ArbolAVLGUI extends javax.swing.JFrame {
         }catch(NumberFormatException u){
             JOptionPane.showMessageDialog(this, "No es un numero");
         }
-        jTextField3.setText("");
+        removeTextField.setText("");
     }
+    
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addButton;
+    private javax.swing.JTextField addTextField;
+    public javax.swing.JButton backButton;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JButton removeButton;
+    private javax.swing.JTextField removeTextField;
+    private javax.swing.JButton searchButton;
+    private javax.swing.JTextField searchTextField;
+    private javax.swing.JButton showButton;
+    // End of variables declaration//GEN-END:variables
+
+    
 }

@@ -11,7 +11,7 @@ import java.util.Queue;
  */
 public class ArbolBin {
     /**
-     * La raíz del aarbol
+     * La raíz del arbol
      */
     public Nodo root;
     
@@ -208,6 +208,11 @@ public class ArbolBin {
         return false;
     }
     
+    /**
+     * Busca en el arbol un nodo que contenga el valor especificado 
+     * @param valor El entero que se quiere encontrar en el árbol
+     * @return El nodo con el valor, si no se encuentra, regresa Null
+     */
     public Nodo encontrarNodo(int valor){
         Nodo r = this.root;
 	Queue<Nodo> queue = new LinkedList();
@@ -247,20 +252,12 @@ public class ArbolBin {
         return (Integer.max(i, d)+1);
     }
     
-    public LinkedList<Nodo> preOrder(){
-        LinkedList<Nodo> preOrderList=new LinkedList<>();
-        doPreOrder(this.root,preOrderList);
-        return preOrderList;
-    }
-    
-    private void doPreOrder(Nodo nodo,LinkedList<Nodo> l){
-        if(nodo==null)
-            return;
-        l.add(nodo);
-        doPreOrder(nodo.izq,l);
-        doPreOrder(nodo.der,l);
-    }
-    
+    /**
+     * Busca en qué lado de un nodo padre se encuentra un nodo hijo
+     * @param padre El nodo padre
+     * @param hijo  El nodo hijo
+     * @return 0 si es el hijo izquierdo, 1 si es el derecho y -1 si no es su hijo
+     */
     public int getLadoHijo(Nodo padre, Nodo hijo){
         if(padre.izq==hijo)
             return 0;

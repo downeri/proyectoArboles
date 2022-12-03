@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package arboles.GUI;
 
 
@@ -20,7 +15,7 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
 /**
- *Clase que genera una imagen a partir de n árbol binario
+ *Clase que genera una imagen a partir de un árbol binario
  * @author Equipo 5
  */
 public class TreeImage {
