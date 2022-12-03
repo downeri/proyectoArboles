@@ -1,18 +1,20 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package arboles;
 
 import java.util.LinkedList;
 import java.util.Queue;
 
 /**
- *La clase modela una estructura Heap
- * @author Equipo 5
+ *
+ * @author Downe
  */
 public class Heap extends ArbolBin {
-
-    /**
-     * Agrega un nodo a la primera posición disponible
-     * @param nodo El nodo a agregar
-     */
+    int i;
+    
     public void add(Nodo nodo){
         if(root==null){
             System.out.println("Agregando "+nodo.valor+" como raiz");
@@ -41,14 +43,10 @@ public class Heap extends ArbolBin {
             
         }
         System.out.println("Heapify para "+nodo.valor);
-        upHeapify(nodo);
+        heapify(nodo);
     }
     
-    /**
-     * Asegura que el heap mantenga su estructura, verificando que todos los padres del nodo tengan valores mayores
-     * @param nodo El nodo desde comienza el heapify
-     */
-    private void upHeapify(Nodo nodo){
+    private void heapify(Nodo nodo){
         if(nodo==root)
             return;
         Nodo padre=searchParent(nodo);
@@ -56,16 +54,11 @@ public class Heap extends ArbolBin {
         if(padre.valor<nodo.valor){
             System.out.println("Cambiando "+padre.valor+" y "+nodo.valor);
             swapPadreHijo(padre,nodo);
-            upHeapify(nodo);
+            heapify(nodo);
         }
-        upHeapify(padre);
+        heapify(padre);
     }
     
-    /**
-     * Busca un nodo con el valor especificado y lo elimina del árbol
-     * @param valor El valor que se quiere eliminar del árbol. En caso de haber más de 1, se elimina el primero que se encuentre
-     * @return True si se realizó la operación, False si no
-     */
     public Boolean remove(int valor){
         System.out.println("Eliminando "+valor);
         Nodo n=encontrarNodo(valor);
@@ -87,9 +80,6 @@ public class Heap extends ArbolBin {
         return false;
     }
     
-    /**
-     * Se asegura que el árbol tiene la estructura de heap, verificando todo el árbol de arriba a bajo
-     */
     private void bfsHeapify(){
         Nodo r = this.root;
         Queue<Nodo> queue = new LinkedList();
@@ -101,21 +91,18 @@ public class Heap extends ArbolBin {
                     continue;
                 if(r.izq!=null){
                     if(r.izq.valor>r.valor)
-                        upHeapify(r.izq);
+                        heapify(r.izq);
                     queue.add(r.izq);
                 }
                 if(r.der!=null){
                     if(r.der.valor>r.valor)
-                        upHeapify(r.der);
+                        heapify(r.der);
                    queue.add(r.der); 
                 }  
             }
         }
     }
     
-    /**
-     * Se elimina la raíz del heap
-     */
     public void eliminarRaiz(){
         if(root.isLeaf()){
             root=null;
@@ -127,13 +114,9 @@ public class Heap extends ArbolBin {
         ultimo.setIzq(root.izq);
         root=ultimo;
         System.out.println(lastElement().valor);
-        upHeapify(lastElement());
+        heapify(lastElement());
     }
     
-    /**
-     * Busca el último elemento en el árbol
-     * @return El último elemento del árbol
-     */
     public Nodo lastElement(){
         Nodo ultimo;
         LinkedList<Nodo> l=getBreadthFirst();
@@ -141,19 +124,12 @@ public class Heap extends ArbolBin {
         return ultimo;
     }
     
-    /**
-     * Se elimina el ultimo elemento del árbol
-     */
     private void disconnectLast(){
         Nodo last=lastElement();
         Nodo padre=searchParent(last);
         padre.disconnect(getLadoHijo(padre, last));
     }
     
-    /**
-     * Se intercambia el nodo proporcionado por el último nodo del árbol
-     * @param n1 El nodo a intercambiar
-     */
     private void swapWithLast(Nodo n1){
         Nodo last,padreLast,padren1,a1,a2;
         last=lastElement();
@@ -171,11 +147,6 @@ public class Heap extends ArbolBin {
         padren1.setLado(last, ladoN1);
     }
     
-    /**
-     * Se intercambian los nodos cuando uno es el padre del otro
-     * @param padre El nodo padre a intercambiar
-     * @param hijo El nodo hijo a intercambir
-     */
     public void swapPadreHijo(Nodo padre, Nodo hijo){
         Nodo a1,a2,a3;
         int lado;

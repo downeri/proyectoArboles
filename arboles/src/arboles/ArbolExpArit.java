@@ -1,18 +1,12 @@
 package arboles;
 
-
 /**
  * La clase modela una arbol de expresiones aritmeticas donde cada nodo almacena
  * datos de tipo string
  */
-
 import java.util.Stack;
 import java.util.ArrayList;
 
-/**
- * La clase modela una arbol de expresiones aritmeticas donde cada nodo almacena datos de tipo string
- * @author Equipo 5
- */
 public class ArbolExpArit extends ArbolBin {
 
     /**
