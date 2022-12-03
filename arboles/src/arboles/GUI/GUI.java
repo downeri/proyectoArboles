@@ -45,8 +45,18 @@ public class GUI extends javax.swing.JFrame {
         });
 
         jButton2.setText("Heap");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Árbol de Expresión Aritmética");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -98,6 +108,22 @@ public class GUI extends javax.swing.JFrame {
             this.setVisible(true);
         });
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        HeapGUI o=new HeapGUI();
+        this.setVisible(false);
+        o.jButton5.addActionListener((ActionEvent e)->{
+            this.setVisible(true);
+        });
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        EAGUI o=new EAGUI();
+        this.setVisible(false);
+        o.jButton5.addActionListener((ActionEvent e)->{
+            this.setVisible(true);
+        });
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

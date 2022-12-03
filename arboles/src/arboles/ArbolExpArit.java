@@ -7,7 +7,8 @@ package arboles;
 import java.util.Stack;
 import java.util.ArrayList;
 
-public class ArbolExpArit {
+public class ArbolExpArit extends ArbolBin {
+
 
     /**
      * La referencia del nodo raíz
@@ -214,6 +215,7 @@ public class ArbolExpArit {
         return null;
     }
 
+
     /**
      * Recorre en postOrden pero también realiza la operacion aritmetica
      */
@@ -225,10 +227,13 @@ public class ArbolExpArit {
 
         System.out.println(list);
         if (!ecuacion.empty()) {
-            System.out.println("La solución de la ecuacion es: " + ecuacion.pop());
+            String u=ecuacion.pop();
+            System.out.println("La solución de la ecuacion es: " + u);
+            return u;
         } else {
             System.out.println("Ecuacion no valida");
         }
+        return "Ecuacion no valida";
     }
 
     /**
@@ -282,5 +287,18 @@ public class ArbolExpArit {
             }
             expresion.push(String.valueOf(doble));
         }
+    }
+    
+    public int calcularAltura(NodoString nodo){
+        return calcularAlturaS(nodo)-1;
+    }
+    
+
+    private int calcularAlturaS(NodoString nodo){
+        if(nodo==null)
+            return 0;
+        int i=calcularAlturaS(nodo.izq);
+        int d=calcularAlturaS(nodo.der);
+        return (Integer.max(i, d)+1);
     }
 }

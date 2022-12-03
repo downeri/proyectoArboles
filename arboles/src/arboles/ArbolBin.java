@@ -92,7 +92,6 @@ public class ArbolBin {
      */
     public LinkedList<Nodo> getBreadthFirst(){
         LinkedList<Nodo> BFS=new LinkedList<>();
-        System.out.println("\n\nÁrbol: ");
         Nodo r = root;
 	Queue<Nodo> queue = new LinkedList();
 	if(r!=null){
@@ -176,16 +175,12 @@ public class ArbolBin {
             queue.add(r);
             while(!queue.isEmpty()){
                 r = (Nodo)queue.poll();
-		if(r.izq!=null){
-                    if(r.izq.equals(nodoABuscar))
-                        return true;
+                if(r==nodoABuscar)
+                    return true;
+		if(r.izq!=null)
                     queue.add(r.izq);  
-                }
-		if(r.der!=null){
-                    if(r.der.equals(nodoABuscar))
-                        return true;
+		if(r.der!=null)
                     queue.add(r.der);
-                }
             }
 	}
         return false;
@@ -202,19 +197,33 @@ public class ArbolBin {
             queue.add(r);
             while(!queue.isEmpty()){
                 r = (Nodo)queue.poll();
-		if(r.izq!=null){
-                    if(r.izq.valor==valor)
-                        return true;
+                if(r.valor==valor)
+                    return true;
+		if(r.izq!=null)
                     queue.add(r.izq);  
-                }
-		if(r.der!=null){
-                    if(r.der.valor==valor)
-                        return true;
+		if(r.der!=null)
                     queue.add(r.der);
-                }
             }
 	}
         return false;
+    }
+    
+    public Nodo encontrarNodo(int valor){
+        Nodo r = this.root;
+	Queue<Nodo> queue = new LinkedList();
+	if(r!=null){
+            queue.add(r);
+            while(!queue.isEmpty()){
+                r = (Nodo)queue.poll();
+                if(r.valor==valor)
+                    return r;
+		if(r.izq!=null)
+                    queue.add(r.izq);  
+		if(r.der!=null)
+                    queue.add(r.der);
+            }
+	}
+        return null;
     }
      /**
      * Calcula la altura del árbol
@@ -251,4 +260,16 @@ public class ArbolBin {
         doPreOrder(nodo.izq,l);
         doPreOrder(nodo.der,l);
     }
+    
+    public int getLadoHijo(Nodo padre, Nodo hijo){
+        if(padre.izq==hijo)
+            return 0;
+        if(padre.der==hijo)
+            return 1;
+        return -1;
+    }
+    
+    
+    
+    
 }

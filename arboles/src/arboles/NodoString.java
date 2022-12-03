@@ -3,6 +3,7 @@ package arboles;
 /**
  * La clase modela un nodo con datos de tipos String
  */
+
 public class NodoString {
     
     /**
@@ -19,13 +20,14 @@ public class NodoString {
      * Hace referencia al hijo derecho
      */
     NodoString der;
+
     
     /**
      * Método constructor del nodo
      * @param s es el dato almacenado
      */
     NodoString(String s){
-        dato = s;
+        valor = s;
         izq = der = null;
     }
     
@@ -63,6 +65,6 @@ public class NodoString {
      * @return devuelve el dato del nodo
      */
     public String getDato(){
-        return dato;
+        return valor;
     }
 }

@@ -182,8 +182,11 @@ public class ArbolAVL extends ArbolBinBusq{
      */
     @Override
     public void remove(Nodo nodo){
+        if(nodo==root){
+            root=null;
+            return;
+        }
         super.remove(nodo);
-        System.out.print("Si sirve o nel?");
         LinkedList<Nodo> bfs=this.getBreadthFirst();
         LinkedList<Nodo> bfsNoNull=new LinkedList<>();
         for(Nodo n:bfs){
