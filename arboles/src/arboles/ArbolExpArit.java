@@ -199,7 +199,10 @@ public class ArbolExpArit extends ArbolBin {
             pilaTerminos.push(construirTermino(pilaTerminos, pilaOperaciones));
         }
 
-        return pilaTerminos.pop();
+        if(!pilaTerminos.empty()){
+            return pilaTerminos.pop();
+        }
+        return null;
     }
 
     /*
