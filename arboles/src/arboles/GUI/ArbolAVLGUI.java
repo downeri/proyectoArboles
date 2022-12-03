@@ -95,6 +95,18 @@ public final class ArbolAVLGUI extends javax.swing.JFrame {
             }
         });
 
+        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField2KeyPressed(evt);
+            }
+        });
+
+        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField3KeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -163,27 +175,11 @@ public final class ArbolAVLGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        String o=JOptionPane.showInputDialog("Inserta un número");
-        try{
-            if(arbol.buscar(Integer.parseInt(o)))
-                JOptionPane.showMessageDialog(this, "El valor se encuentra en el árbol :D");
-            else
-                JOptionPane.showMessageDialog(this, "El valor no se encuentra en el árbol :(");
-        }catch(NumberFormatException u){
-            JOptionPane.showMessageDialog(this, "No es un numero");
-        }
+        buscar();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        String o=JOptionPane.showInputDialog("Inserta un número");
-        try{
-            if(arbol.remove(Integer.parseInt(o)))
-                JOptionPane.showMessageDialog(this, "El valor se ha removido del árbol :D");
-            else
-                JOptionPane.showMessageDialog(this, "El valor no se encuentra en el árbol :(");
-        }catch(NumberFormatException u){
-            JOptionPane.showMessageDialog(this, "No es un numero");
-        }
+        eliminar();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -195,6 +191,18 @@ public final class ArbolAVLGUI extends javax.swing.JFrame {
             agregar();
         }
     }//GEN-LAST:event_jTextField1KeyPressed
+
+    private void jTextField2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            buscar();
+        }
+    }//GEN-LAST:event_jTextField2KeyPressed
+
+    private void jTextField3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            eliminar();
+        }
+    }//GEN-LAST:event_jTextField3KeyPressed
 
     
     private void agregar(){
@@ -222,4 +230,30 @@ public final class ArbolAVLGUI extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
+
+    private void buscar() {
+        String o=jTextField2.getText();
+        try{
+            if(arbol.buscar(Integer.parseInt(o)))
+                JOptionPane.showMessageDialog(this, "El valor se encuentra en el árbol :D");
+            else
+                JOptionPane.showMessageDialog(this, "El valor no se encuentra en el árbol :(");
+        }catch(NumberFormatException u){
+            JOptionPane.showMessageDialog(this, "No es un numero");
+        }
+        jTextField2.setText("");
+    }
+
+    private void eliminar() {
+        String o=jTextField3.getText();
+        try{
+            if(arbol.remove(Integer.parseInt(o)))
+                JOptionPane.showMessageDialog(this, "El valor se ha removido del árbol :D");
+            else
+                JOptionPane.showMessageDialog(this, "El valor no se encuentra en el árbol :(");
+        }catch(NumberFormatException u){
+            JOptionPane.showMessageDialog(this, "No es un numero");
+        }
+        jTextField3.setText("");
+    }
 }

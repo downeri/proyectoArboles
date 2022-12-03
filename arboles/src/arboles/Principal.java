@@ -46,5 +46,10 @@ public class Principal {
        o.generarImagenArbol();
        o.mostrarImagen();
        
+
+       System.out.println("\n============");
+       ArbolExpArit arbolito3 = new ArbolExpArit("4+2*(5-2)");
+       arbolito3.postOrden();
+
     }
 }
