@@ -22,11 +22,10 @@ public final class EAGUI extends javax.swing.JFrame {
     /**
      * Creates new form ArbolAVL
      */
-    
     ArbolExpArit arbol;
-    
+
     public EAGUI() {
-        arbol=null;
+        arbol = null;
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
@@ -127,12 +126,14 @@ public final class EAGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        if(arbol.root==null)
-            JOptionPane.showMessageDialog(this, "No hay elementos para mostrar","Mensaje",JOptionPane.WARNING_MESSAGE);
-        else{
-            TreeImageString t=new TreeImageString(arbol);
-            Image i=t.generarImagenArbol();
-            ImageIcon icon=new ImageIcon(i);
+        if (arbol == null)
+            JOptionPane.showMessageDialog(this, "No hay elementos para mostrar", "Mensaje", JOptionPane.WARNING_MESSAGE);
+        else if(arbol.root == null)
+            JOptionPane.showMessageDialog(this, "Error. Revise su expresión", "Mensaje", JOptionPane.WARNING_MESSAGE);
+        else {
+            TreeImageString t = new TreeImageString(arbol);
+            Image i = t.generarImagenArbol();
+            ImageIcon icon = new ImageIcon(i);
             icon.setImage(icon.getImage().getScaledInstance(490, 350, Image.SCALE_DEFAULT));
             t.mostrarImagen();
         }
@@ -143,24 +144,27 @@ public final class EAGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             leer();
         }
     }//GEN-LAST:event_jTextField1KeyPressed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if(arbol.root!=null)
-            JOptionPane.showMessageDialog(this, arbol.postOrden(),"Resolución",JOptionPane.INFORMATION_MESSAGE);
+        if (arbol == null)
+            JOptionPane.showMessageDialog(this, "No hay elementos para mostrar", "Mensaje", JOptionPane.WARNING_MESSAGE);
+        else if(arbol.root == null)
+            JOptionPane.showMessageDialog(this, "Error. Revise su expresión", "Mensaje", JOptionPane.WARNING_MESSAGE);
+        else
+            JOptionPane.showMessageDialog(this, arbol.postOrden(), "Resolución", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    
-    private void leer(){
-        String o=jTextField1.getText();
-        arbol=new ArbolExpArit(o);
-        if(arbol.root == null){
-            JOptionPane.showMessageDialog(this, "Error. Revise su expresión","Mensaje",JOptionPane.WARNING_MESSAGE);
-        }else{
-            JOptionPane.showMessageDialog(this, "El valor se ha insertado con éxito","Mensaje",JOptionPane.INFORMATION_MESSAGE);
+    private void leer() {
+        String o = jTextField1.getText();
+        arbol = new ArbolExpArit(o);
+        if (arbol.root == null) {
+            JOptionPane.showMessageDialog(this, "Error. Revise su expresión", "Mensaje", JOptionPane.WARNING_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "El valor se ha insertado con éxito", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
         }
         jTextField1.setText("");
     }
