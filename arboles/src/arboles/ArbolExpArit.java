@@ -249,6 +249,7 @@ public class ArbolExpArit extends ArbolBin {
 
     /**
      * Recorre en postOrden pero también realiza la operacion aritmetica
+     * @return El resultado de la operación
      */
     public String postOrden() {
         ArrayList<String> list = new ArrayList<>();

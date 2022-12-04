@@ -7,14 +7,6 @@ package arboles;
 public class ArbolBinBusq extends ArbolBin{
     
     /**
-     * 
-     * @deprecated 
-     */
-    @Override
-    public void add(Nodo padre, Nodo hijo, int lado){
-        
-    }
-    /**
      * Encuentra la posición que le corresponde al nodo de acuerdo a su valor y lo inserta en el árbol
      * @param nodo El nodo a insertar en el árbol
      */

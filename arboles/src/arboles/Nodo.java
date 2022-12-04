@@ -1,6 +1,5 @@
 package arboles;
 
-
 /**
  *Representa a un nodo del árbol
  * @author Prof. Tista Garcia Edgar, modificado por Equipo 5

@@ -1,15 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package arboles.GUI;
 
 import arboles.ArbolAVL;
 import arboles.Nodo;
-import java.awt.Image;
 import java.awt.event.KeyEvent;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**

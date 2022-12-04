@@ -1,6 +1,5 @@
 package arboles.GUI;
 
-import arboles.ArbolAVL;
 import arboles.ArbolExpArit;
 import java.awt.Image;
 import java.awt.event.KeyEvent;

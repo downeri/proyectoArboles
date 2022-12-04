@@ -1,7 +1,5 @@
 package arboles;
 
-
-
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -230,11 +228,12 @@ public class ArbolBin {
 	}
         return null;
     }
-     /**
-     * Calcula la altura del árbol
-     * @param nodo El nodo del que se quiere conocer su altura
-     * @return Regresa la altura más grande de sus subárboles
-     */
+    
+    /**
+    * Calcula la altura del árbol
+    * @param nodo El nodo del que se quiere conocer su altura
+    * @return Regresa la altura más grande de sus subárboles
+    */
     public int calcularAltura(Nodo nodo){
         return calcularAlturaS(nodo)-1;
     }
