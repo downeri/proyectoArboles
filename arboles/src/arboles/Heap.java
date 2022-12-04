@@ -109,7 +109,7 @@ public class Heap extends ArbolBin {
                 if(r.der!=null){
                     if(r.der.valor>r.valor)
                         heapify(r.der);
-                   queue.add(r.der); 
+                    queue.add(r.der); 
                 }  
             }
         }
@@ -160,6 +160,10 @@ public class Heap extends ArbolBin {
         last=lastElement();
         padreLast=searchParent(last);
         padren1=searchParent(n1);
+        if(padreLast==n1){
+            swapPadreHijo(n1, last);
+            return;
+        }
         int ladoLast=getLadoHijo(padreLast, last);
         int ladoN1=getLadoHijo(padren1, n1);
         a1=n1.izq;

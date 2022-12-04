@@ -182,7 +182,7 @@ public class ArbolAVL extends ArbolBinBusq{
      */
     @Override
     public void remove(Nodo nodo){
-        if(nodo==root){
+        if(nodo==root&&root.isLeaf()){
             root=null;
             return;
         }

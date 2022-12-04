@@ -217,6 +217,7 @@ public final class HeapGUI extends javax.swing.JFrame {
         }catch(NumberFormatException u){
             JOptionPane.showMessageDialog(this, "No es un numero");
         }
+        removeTextField.setText("");
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

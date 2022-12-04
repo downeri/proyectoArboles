@@ -42,7 +42,7 @@ public final class EAGUI extends javax.swing.JFrame {
         solveButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Árbol AVL");
+        setTitle("Árbol de Expansión Aritmética");
         setResizable(false);
 
         addButton.setText("Ingresar Expresión");
