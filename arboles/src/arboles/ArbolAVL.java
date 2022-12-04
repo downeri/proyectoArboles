@@ -98,7 +98,7 @@ public class ArbolAVL extends ArbolBinBusq{
         Nodo a1,a2,a3;
         if(subRotacion!=0){
             int lado=0;
-            Nodo padre=searchParent(z);
+            Nodo padre=buscarPadre(z);
             if(z!=root){
                 if(padre.izq==z)
                     lado=0;
@@ -186,16 +186,40 @@ public class ArbolAVL extends ArbolBinBusq{
             root=null;
             return;
         }
+        
         super.remove(nodo);
-        LinkedList<Nodo> bfs=this.getBreadthFirst();
-        LinkedList<Nodo> bfsNoNull=new LinkedList<>();
-        for(Nodo n:bfs){
-            if(n!=null)
-                bfsNoNull.add(n);
-        }
-        equilibrar(bfsNoNull, nodo);
+        equilibrarBFS();
+        
     }
-    
+    /**
+     * Verifica si el árbol está balanceado, analizando en orden BFS
+     */
+    private void equilibrarBFS(){
+        int fe;
+        Nodo a=null;
+        LinkedList<Nodo> bfs=this.getBreadthFirst();
+        for(Nodo n:bfs){
+            if(n!=null){
+                fe=calcularFactorDeEquilibrio(n);
+                if(fe==2){
+                    if(n.der.izq!=null){
+                        rotar(n, fe, n.der.izq);
+                    }else{
+                        rotar(n, fe, n.der.der);
+                    }
+                }
+                if(fe==-2){
+                    if(n.izq.izq!=null){
+                        rotar(n, fe, n.izq.izq);
+                    }else{
+                        rotar(n, fe, n.izq.der);
+                    }
+                }
+                
+ 
+            }
+        }
+    }
     /**
      * Busca un nodo que contenga el valor especificado y lo elimina del árbol
      * @param valor El valor numérico que se desea eliminar del árbol

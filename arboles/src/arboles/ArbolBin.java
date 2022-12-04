@@ -48,7 +48,7 @@ public class ArbolBin {
      * @param nodo El nodo que se quiere eliminar del árbol
      */
     public void remove(Nodo nodo){
-        Nodo nodoPadre=searchParent(nodo);
+        Nodo nodoPadre=buscarPadre(nodo);
         if(nodoPadre==null)
             System.out.print("No existe el nodo en el árbol");
         else{
@@ -76,7 +76,7 @@ public class ArbolBin {
                         break;
                     next=next.izq;
                 }
-                searchParent(next).disconnect(0);
+                buscarPadre(next).disconnect(0);
                 next.setIzq(next.izq);
                 next.setDer(next.der);
                 nodoPadre.setLado(next, lado);
@@ -140,7 +140,7 @@ public class ArbolBin {
      * @param nodoABuscar El nodo del cual se desea conocer su nodo padre
      * @return El nodo padre del nodo especificado
      */
-    public Nodo searchParent(Nodo nodoABuscar){
+    public Nodo buscarPadre(Nodo nodoABuscar){
         Nodo r = this.root;
 	Queue<Nodo> queue = new LinkedList();
 	if(r!=null){

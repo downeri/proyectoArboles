@@ -95,7 +95,7 @@ public class ArbolBinBusq extends ArbolBin{
             if(nodo.der!=null&&nodo.izq!=null){
                 Nodo predecesor=searchPredecesor(nodo);
                 if(predecesor!=nodo.izq){
-                    searchParent(predecesor).disconnect(1);
+                    buscarPadre(predecesor).disconnect(1);
                     predecesor.setIzq(nodo.izq);
                     predecesor.setDer(nodo.der);
                     root=predecesor;
@@ -106,7 +106,7 @@ public class ArbolBinBusq extends ArbolBin{
                 }
             }
         }
-        Nodo nodoPadre=searchParent(nodo);
+        Nodo nodoPadre=buscarPadre(nodo);
         if(nodoPadre==null)
             System.out.print("No existe el nodo en el árbol");
         else{
@@ -130,7 +130,7 @@ public class ArbolBinBusq extends ArbolBin{
             if(nodo.der!=null&&nodo.izq!=null){
                 Nodo predecesor=searchPredecesor(nodo);
                 if(predecesor!=nodo.izq){
-                    searchParent(predecesor).disconnect(1);
+                    buscarPadre(predecesor).disconnect(1);
                     predecesor.setIzq(nodo.izq);
                     predecesor.setDer(nodo.der);
                     nodoPadre.setLado(predecesor, lado);

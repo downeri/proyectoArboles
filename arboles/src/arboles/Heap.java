@@ -53,7 +53,7 @@ public class Heap extends ArbolBin {
     private void heapify(Nodo nodo){
         if(nodo==root)
             return;
-        Nodo padre=searchParent(nodo);
+        Nodo padre=buscarPadre(nodo);
         System.out.println(padre.valor+"<"+nodo.valor+"?: "+(padre.valor<nodo.valor));
         if(padre.valor<nodo.valor){
             System.out.println("Cambiando "+padre.valor+" y "+nodo.valor);
@@ -78,7 +78,7 @@ public class Heap extends ArbolBin {
                 return true;
             }
             if(n==lastElement()){
-                searchParent(n).disconnect(getLadoHijo(searchParent(n), n));
+                buscarPadre(n).disconnect(getLadoHijo(buscarPadre(n), n));
                 return true;
             }
             swapWithLast(n);
@@ -124,7 +124,7 @@ public class Heap extends ArbolBin {
             return;
         }
         Nodo ultimo=lastElement();
-        searchParent(ultimo).disconnect(getLadoHijo(searchParent(ultimo), ultimo));
+        buscarPadre(ultimo).disconnect(getLadoHijo(buscarPadre(ultimo), ultimo));
         ultimo.setDer(root.der);
         ultimo.setIzq(root.izq);
         root=ultimo;
@@ -147,7 +147,7 @@ public class Heap extends ArbolBin {
      */
     private void disconnectLast(){
         Nodo last=lastElement();
-        Nodo padre=searchParent(last);
+        Nodo padre=buscarPadre(last);
         padre.disconnect(getLadoHijo(padre, last));
     }
     
@@ -158,8 +158,8 @@ public class Heap extends ArbolBin {
     private void swapWithLast(Nodo n1){
         Nodo last,padreLast,padren1,a1,a2;
         last=lastElement();
-        padreLast=searchParent(last);
-        padren1=searchParent(n1);
+        padreLast=buscarPadre(last);
+        padren1=buscarPadre(n1);
         if(padreLast==n1){
             swapPadreHijo(n1, last);
             return;
@@ -187,7 +187,7 @@ public class Heap extends ArbolBin {
         int otroLado;
         Nodo abuelo=null;
         if(padre!=root){
-            abuelo=searchParent(padre);
+            abuelo=buscarPadre(padre);
         }
         lado=getLadoHijo(padre, hijo);
         a2=hijo.izq;
