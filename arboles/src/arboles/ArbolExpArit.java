@@ -76,6 +76,13 @@ public class ArbolExpArit extends ArbolBin {
 
                     if (expresion.charAt(i) == '(') {
                         parentesis.push('(');
+                        try {
+                            if (expresion.charAt(i + 1) == ')') {
+                                return false;
+                            }
+                        } catch (Exception e) {
+
+                        }
                     } else if (expresion.charAt(i) == ')' && !parentesis.empty()) {
                         parentesis.pop();
                     } else if (expresion.charAt(i) == ')' && parentesis.empty()) {
@@ -98,7 +105,9 @@ public class ArbolExpArit extends ArbolBin {
                 flag = true;
             }
         }
-        
+        if(!parentesis.empty()){
+            return false;
+        }
         return flag;
     }
 
@@ -189,6 +198,12 @@ public class ArbolExpArit extends ArbolBin {
 
             try {
                 if (expresion.charAt(i) == ')' && expresion.charAt(i + 1) == '(') {
+                    expresion = expresion.substring(0, i + 1) + "*" + expresion.substring(i + 1);
+                }
+                if (expresion.charAt(i) == ')' && Character.isDigit(expresion.charAt(i + 1))) {
+                    expresion = expresion.substring(0, i + 1) + "*" + expresion.substring(i + 1);
+                }
+                if (Character.isDigit(expresion.charAt(i - 1)) && expresion.charAt(i) == '(') {
                     expresion = expresion.substring(0, i + 1) + "*" + expresion.substring(i + 1);
                 }
             } catch (Exception e) {
